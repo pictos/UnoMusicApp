@@ -9,6 +9,8 @@
 	mc:Ignorable="d">
 
 	<Grid>
+		<CommandBar VerticalAlignment="Top" />
+
 		<TextBlock Text="Hello there!" />
 	</Grid>
 </Page>

@@ -1,8 +1,9 @@
 ﻿
 using CommunityToolkit.Mvvm.Input;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnoMusicApp.Pages;
 using UnoMusicApp.Services;
 using Windows.UI.Popups;
 
@@ -13,7 +14,7 @@ namespace UnoMusicApp.ViewModels
 		[ObservableProperty]
 		string query = "Cícero";
 
-		public ObservableCollection<YoutubeMediaFile> Medias { get; } = new();
+		public ObservableRangeCollection<YoutubeMediaFile> Medias { get; } = new();
 
 		partial void OnQueryChanged(string value)
 		{
@@ -36,15 +37,32 @@ namespace UnoMusicApp.ViewModels
 					await messageDialog.ShowAsync().AsTask();
 					return;
 				}
+
+				var list = new List<YoutubeMediaFile>();
 				await foreach (var item in YoutubeService.SearchMedia(query).ConfigureAwait(false))
 				{
-					Medias.Add(item);
+					list.Add(item);
 				}
+
+				Medias.AddRange(list);
 			}
 			finally
 			{
 				IsBusy = false;
 			}
+		}
+
+		[RelayCommand]
+		async Task PlaySong(YoutubeMediaFile mediaFile)
+		{
+			var manifesTask = YoutubeService.GetManifestMedia(mediaFile);
+			var values = new Dictionary<string, object>
+			{
+				{"audioInfo", manifesTask },
+				{"mediaFile", mediaFile }
+			};
+
+			await NavigationService.NavigateTo(typeof(PlayerPage), values).ConfigureAwait(false);
 		}
 	}
 }

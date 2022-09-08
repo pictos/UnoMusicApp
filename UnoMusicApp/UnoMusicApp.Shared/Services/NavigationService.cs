@@ -1,5 +1,8 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace UnoMusicApp.Services
 {
@@ -7,21 +10,25 @@ namespace UnoMusicApp.Services
 	{
 		static Frame CurrentFrame => Microsoft.UI.Xaml.Window.Current.Content as Frame;
 
+		static Page CurrentPage => CurrentFrame.Content as Page;
+
 		public static void NavigateTo(Type pageType)
 		{
-			CurrentFrame.Navigate(pageType);
+			CurrentPage.Frame.Navigate(pageType);
 		}
 
 
-		public static void NavigateTo(Type pageType, object parameter)
+		public static async ValueTask NavigateTo(Type pageType, object parameter)
 		{
-			CurrentFrame.Navigate(pageType, parameter);
+			CurrentPage.Frame.Navigate(pageType, parameter);
+			if (CurrentPage.DataContext is BaseViewModel vm)
+				await vm.InitializeAsync((Dictionary<string, object>)parameter);
 		}
 
 		public static void NavigateBack()
 		{
-			if (CurrentFrame.CanGoBack)
-				CurrentFrame.GoBack();
+			if (CurrentPage.Frame.CanGoBack)
+				CurrentPage.Frame.GoBack();
 		}
 	}
 }

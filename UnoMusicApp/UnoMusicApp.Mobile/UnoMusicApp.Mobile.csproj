@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst;</TargetFrameworks>
 		<SingleProject>true</SingleProject>
@@ -21,6 +21,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="LibVLCSharp" Version="3.6.6" />
 		<PackageReference Include="Uno.WinUI" Version="4.4.20" />
+		<PackageReference Include="Uno.WinUI.Lottie" Version="4.4.20" />
 		<PackageReference Include="Uno.WinUI.RemoteControl" Version="4.4.20" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.4.20" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
@@ -68,4 +69,20 @@
 		</When>
 	</Choose>
 	<Import Project="..\UnoMusicApp.Shared\UnoMusicApp.Shared.projitems" Label="Shared" />
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-ios'))">
+		<PackageReference Include="VideoLAN.LibVLC.iOS" Version="3.3.17" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-maccatalyst'))">
+		<PackageReference Include="VideoLAN.LibVLC.iOS" Version="3.3.17" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-android'))">
+		<PackageReference Include="VideoLAN.LibVLC.Android" Version="3.2.0.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
+		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.16" />
+	</ItemGroup>
 </Project>
