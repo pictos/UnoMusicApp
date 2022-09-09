@@ -7,11 +7,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UnoMusicApp.Shared", "UnoMu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{F28B2A37-EDFA-4348-80FC-8FC3CC971E4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnoMusicApp.Mobile", "UnoMusicApp\UnoMusicApp.Mobile\UnoMusicApp.Mobile.csproj", "{516CEECD-6C4F-42D2-9DA4-6480C1CF12D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnoMusicApp.Mobile", "UnoMusicApp\UnoMusicApp.Mobile\UnoMusicApp.Mobile.csproj", "{516CEECD-6C4F-42D2-9DA4-6480C1CF12D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnoMusicApp.Skia.Gtk", "UnoMusicApp\UnoMusicApp.Skia.Gtk\UnoMusicApp.Skia.Gtk.csproj", "{78920902-ADFA-4B56-8E25-99283B4E31ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnoMusicApp.Skia.Gtk", "UnoMusicApp\UnoMusicApp.Skia.Gtk\UnoMusicApp.Skia.Gtk.csproj", "{78920902-ADFA-4B56-8E25-99283B4E31ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnoMusicApp.Windows", "UnoMusicApp\UnoMusicApp.Windows\UnoMusicApp.Windows.csproj", "{51E45C22-A930-4115-809F-163A4170CD53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnoMusicApp.Windows", "UnoMusicApp\UnoMusicApp.Windows\UnoMusicApp.Windows.csproj", "{51E45C22-A930-4115-809F-163A4170CD53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

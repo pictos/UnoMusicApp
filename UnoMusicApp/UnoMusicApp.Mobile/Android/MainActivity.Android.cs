@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using UnoMusicApp.Services;
 
 namespace UnoMusicApp;
 [Activity(
@@ -12,5 +13,9 @@ namespace UnoMusicApp;
 	)]
 public class MainActivity : Microsoft.UI.Xaml.ApplicationActivity
 {
+	public override void OnBackPressed()
+	{
+		NavigationService.NavigateBack();
+	}
 }
 

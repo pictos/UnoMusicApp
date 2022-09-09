@@ -82,7 +82,6 @@
 		<PackageReference Include="VideoLAN.LibVLC.Android" Version="3.2.0.1" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
-		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.16" />
-	</ItemGroup>
+	<!--<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
+	</ItemGroup>-->
 </Project>

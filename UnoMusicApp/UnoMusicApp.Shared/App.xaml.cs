@@ -4,8 +4,10 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using UnoMusicApp.Pages;
+using UnoMusicApp.Services;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Core;
 
 namespace UnoMusicApp;
 /// <summary>
@@ -13,8 +15,8 @@ namespace UnoMusicApp;
 /// </summary>
 public sealed partial class App : Application
 {
-	private Window _window;
-
+	internal static Window Window { get; private set; }
+	
 	/// <summary>
 	/// Initializes the singleton application object.  This is the first line of authored code
 	/// executed, and as such is the logical equivalent of main() or WinMain().
@@ -45,13 +47,13 @@ public sealed partial class App : Application
 #endif
 
 #if NET6_0_OR_GREATER && WINDOWS && !HAS_UNO
-            _window = new Window();
-            _window.Activate();
+            Window = new Window();
+            Window.Activate();
 #else
-		_window = Microsoft.UI.Xaml.Window.Current;
+		Window = Microsoft.UI.Xaml.Window.Current;
 #endif
 
-		var rootFrame = _window.Content as Frame;
+		var rootFrame = Window.Content as Frame;
 
 		// Do not repeat app initialization when the Window already has content,
 		// just ensure that the window is active
@@ -67,8 +69,9 @@ public sealed partial class App : Application
 				// TODO: Load state from previously suspended application
 			}
 
+			rootFrame.IsNavigationStackEnabled = true;
 			// Place the frame in the current Window
-			_window.Content = rootFrame;
+			Window.Content = rootFrame;
 		}
 
 #if !(NET6_0_OR_GREATER && WINDOWS)
@@ -83,8 +86,19 @@ public sealed partial class App : Application
 				rootFrame.Navigate(typeof(SearchPage), args.Arguments);
 			}
 			// Ensure the current window is active
-			_window.Activate();
+			Window.Activate();
 		}
+
+		var v = SystemNavigationManager.GetForCurrentView();
+		v.BackRequested += App_BackRequested;
+		v.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+	}
+
+	private void App_BackRequested(object sender, BackRequestedEventArgs e)
+	{
+		NavigationService.NavigateBack();
+
+		e.Handled = true;
 	}
 
 	/// <summary>

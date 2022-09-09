@@ -25,13 +25,12 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="LibVLCSharp" Version="3.6.6" />
+		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.16" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.196" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
-		<PackageReference Include="Uno.WinUI.Lottie" Version="4.4.20" />
 		<PackageReference Include="YoutubeExplode" Version="6.2.1" />
-
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
