@@ -12,26 +12,38 @@
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Content Include="Images\SplashScreen.scale-200.png" />
-		<Content Include="Images\LockScreenLogo.scale-200.png" />
-		<Content Include="Images\Square150x150Logo.scale-200.png" />
-		<Content Include="Images\Square44x44Logo.scale-200.png" />
-		<Content Include="Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
-		<Content Include="Images\StoreLogo.png" />
-		<Content Include="Images\Wide310x150Logo.scale-200.png" />
-	</ItemGroup>
+	<PropertyGroup>
+		<!-- Bundles the WinAppSDK binaries (Uncomment for unpackaged builds) -->
+		<!-- <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained> -->
+		<!-- This bundles the .NET Core libraries (Uncomment for packaged builds)  -->
+		<SelfContained>true</SelfContained>
+	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-		<PackageReference Include="LibVLCSharp" Version="3.6.6" />
-		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.16" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.196" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
-		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
-		<PackageReference Include="YoutubeExplode" Version="6.2.1" />
+	  <Content Include="Images\LockScreenLogo.scale-200.png" />
+	  <Content Include="Images\SplashScreen.scale-100.png" />
+	  <Content Include="Images\SplashScreen.scale-125.png" />
+	  <Content Include="Images\SplashScreen.scale-150.png" />
+	  <Content Include="Images\SplashScreen.scale-200.png" />
+	  <Content Include="Images\SplashScreen.scale-400.png" />
+	  <Content Include="Images\Square150x150Logo.scale-200.png" />
+	  <Content Include="Images\Square44x44Logo.scale-200.png" />
+	  <Content Include="Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
+	  <Content Include="Images\StoreLogo.png" />
+	  <Content Include="Images\Wide310x150Logo.scale-200.png" />
+	</ItemGroup>
+	
+	<ItemGroup>
 		<Manifest Include="$(ApplicationManifest)" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.2" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.197" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Uno.WinUI" Version="4.4.5" />
 	</ItemGroup>
 
 	<!-- Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
@@ -41,6 +53,9 @@
 		<ProjectCapability Include="Msix" />
 	</ItemGroup>
 	
+	<ItemGroup>
+		<ProjectReference Include="..\UnoMusicApp\UnoMusicApp.csproj" />
+	</ItemGroup>
 	<ItemGroup>
 		<!--
 		If you encounter this error message:
@@ -54,6 +69,6 @@
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22000.25" />
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22000.25" />
 	</ItemGroup>
-	
-	<Import Project="..\UnoMusicApp.Shared\UnoMusicApp.Shared.projitems" Label="Shared" />
+	<Import Project="..\Extensions.props" />
+	<Import Project="..\UnoMusicApp.UI\UnoMusicApp.UI.projitems" Label="Shared" />
 </Project>

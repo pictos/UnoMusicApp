@@ -1,20 +1,22 @@
-﻿using GLib;
 using System;
+using GLib;
 using Uno.UI.Runtime.Skia;
 
-namespace UnoMusicApp.Skia.Gtk;
-internal class Program
+namespace UnoMusicApp.Skia.Gtk
 {
-	static void Main(string[] args)
+	class Program
 	{
-		ExceptionManager.UnhandledException += delegate (UnhandledExceptionArgs expArgs)
+		static void Main(string[] args)
 		{
-			Console.WriteLine("GLIB UNHANDLED EXCEPTION" + expArgs.ExceptionObject.ToString());
-			expArgs.ExitApplication = true;
-		};
+			ExceptionManager.UnhandledException += delegate (UnhandledExceptionArgs expArgs)
+			{
+				Console.WriteLine("GLIB UNHANDLED EXCEPTION" + expArgs.ExceptionObject.ToString());
+				expArgs.ExitApplication = true;
+			};
 
-		var host = new GtkHost(() => new App());
+			var host = new GtkHost(() => new App(), args);
 
-		host.Run();
+			host.Run();
+		}
 	}
 }

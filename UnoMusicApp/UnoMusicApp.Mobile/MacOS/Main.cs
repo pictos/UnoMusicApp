@@ -1,13 +1,15 @@
-﻿using AppKit;
+using AppKit;
 
-namespace UnoMusicApp.macOS;
-internal static class MainClass
+namespace UnoMusicApp.macOS
 {
-	static void Main(string[] args)
+	static class MainClass
 	{
-		NSApplication.Init();
-		NSApplication.SharedApplication.Delegate = new App();
-		NSApplication.Main(args);
+		static void Main(string[] args)
+		{
+			NSApplication.Init();
+			NSApplication.SharedApplication.Delegate = new App();
+			NSApplication.Main(args);  
+		}
 	}
 }
 

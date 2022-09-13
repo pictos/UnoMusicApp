@@ -1,7 +1,7 @@
 {
   "profiles": {
-    "UnoMusicApp.Windows": {
-      "commandName": "MsixPackage"
-    }
+	"UnoMusicApp.Windows (Package)": {
+	  "commandName": "MsixPackage"
+	}
   }
 }
