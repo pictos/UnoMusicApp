@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UnoMusicApp.Services;
 
 namespace UnoMusicApp.Presentation;
 
-[INotifyPropertyChanged]
-abstract partial class ViewModelBase
+public abstract partial class ViewModelBase
 {
-	[ObservableProperty]
-	bool isBusy;
+	public bool IsBusy { get; set; }
 
-	//protected YoutubeService YoutubeService => YoutubeService.Current;
+	protected YoutubeService YoutubeService => YoutubeService.Current;
 
-	//protected MediaService MediaService => MediaService.Current;
+	protected MediaService MediaService => MediaService.Current;
 
 	public virtual ValueTask InitializeAsync(Dictionary<string, object> args) => ValueTask.CompletedTask;
 

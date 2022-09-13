@@ -1,30 +1,31 @@
-﻿//using LibVLCSharp.Shared;
-//using System;
-//using MP = LibVLCSharp.Shared.MediaPlayer;
-//using static UnoMusicApp.Models.Models;
+﻿using LibVLCSharp.Shared;
+using System;
+using MP = LibVLCSharp.Shared.MediaPlayer;
+using static UnoMusicApp.Models.Models;
 
-//namespace UnoMusicApp.Services;
-//sealed class MediaService
-//{
-//	static readonly Lazy<MediaService> mediaServiceLazy = new(() => new());
+namespace UnoMusicApp.Services;
 
-//	public static MediaService Current => mediaServiceLazy.Value;
+public sealed class MediaService
+{
+	static readonly Lazy<MediaService> mediaServiceLazy = new(() => new());
 
-//	readonly LibVLC libVLC = new();
-//	readonly MP mp;
+	public static MediaService Current => mediaServiceLazy.Value;
 
-//	MediaService()
-//	{
-//		mp = new(libVLC);
-//	}
+	readonly LibVLC libVLC = new();
+	readonly MP mp;
 
-//	public void SetSong(in YoutubeMediaFile mediaFile)
-//	{
-//		if (mp.Media is not null)
-//			mp.Stop();
+	MediaService()
+	{
+		mp = new(libVLC);
+	}
 
-//		mp.Media = new(libVLC, mediaFile.Url, FromType.FromLocation);
-//		mp.Media.AddOption(":no-video");
-//		mp.Play();
-//	}
-//}
+	public void SetSong(in YoutubeMediaFile mediaFile)
+	{
+		if (mp.Media is not null)
+			mp.Stop();
+
+		mp.Media = new(libVLC, mediaFile.Url, FromType.FromLocation);
+		mp.Media.AddOption(":no-video");
+		mp.Play();
+	}
+}
