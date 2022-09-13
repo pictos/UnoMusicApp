@@ -7,6 +7,7 @@ namespace UnoMusicApp.Presentation;
 
 public partial class ViewModelBase
 {
+	public bool IsBusy { get; set; }
 	protected YoutubeService YoutubeService => YoutubeService.Current;
 
 	protected MediaService MediaService => MediaService.Current;

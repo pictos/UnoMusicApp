@@ -9,8 +9,6 @@ using static UnoMusicApp.Models.Models;
 namespace UnoMusicApp.Presentation;
 public sealed partial class SearchViewModel : ViewModelBase
 {
-	public bool IsBusy { get; set; }
-
 	string query = "Cícero";
 	public string Query
 	{
