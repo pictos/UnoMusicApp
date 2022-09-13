@@ -14,7 +14,7 @@ abstract partial class ViewModelBase
 
 	//protected MediaService MediaService => MediaService.Current;
 
-	//public virtual ValueTask InitializeAsync(Dictionary<string, object> args) => ValueTask.CompletedTask;
+	public virtual ValueTask InitializeAsync(Dictionary<string, object> args) => ValueTask.CompletedTask;
 
 	//protected virtual ValueTask InitAsync(ReadOnlyDictionary<string, object> args)
 	//{
