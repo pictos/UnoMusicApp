@@ -58,7 +58,9 @@ public sealed partial class App : Application
 		views.Register(
 			new ViewMap<ShellControl, ShellViewModel>(),
 			new ViewMap<MainPage, MainViewModel>(),
-			new ViewMap<SecondPage, SecondViewModel>()
+			new ViewMap<SecondPage, SecondViewModel>(),
+			new ViewMap<SearchPage, SearchViewModel>(),
+			new ViewMap<PlayerPage, PlayerViewModel>()
 			);
 
 		routes
@@ -68,6 +70,8 @@ public sealed partial class App : Application
 						{
 										new RouteMap("Main", View: views.FindByViewModel<MainViewModel>()),
 										new RouteMap("Second", View: views.FindByViewModel<SecondViewModel>()),
+										new RouteMap("Search", View: views.FindByViewModel<SearchViewModel>()),
+										new RouteMap("Player", View: views.FindByViewModel<PlayerViewModel>()),
 						}));
 	}
 }

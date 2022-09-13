@@ -1,4 +1,7 @@
-﻿using UnoMusicApp.Helpers;
+﻿using Microsoft.UI.Xaml;
+using System.Collections.ObjectModel;
+using Uno.Extensions;
+using UnoMusicApp.Helpers;
 using UnoMusicApp.Services;
 using Windows.UI.Popups;
 using static UnoMusicApp.Models.Models;
@@ -6,6 +9,8 @@ using static UnoMusicApp.Models.Models;
 namespace UnoMusicApp.Presentation;
 public sealed partial class SearchViewModel : ViewModelBase
 {
+	public bool IsBusy { get; set; }
+
 	string query = "Cícero";
 	public string Query
 	{
@@ -28,7 +33,7 @@ public sealed partial class SearchViewModel : ViewModelBase
 		Medias.Clear();
 	}
 
-	public async Task SearchForQuery()
+	public async Task SearchForQueryCommand()
 	{
 		if (IsBusy)
 			return;
@@ -45,7 +50,7 @@ public sealed partial class SearchViewModel : ViewModelBase
 			}
 
 			var list = new List<YoutubeMediaFile>();
-			await foreach (var item in YoutubeService.SearchMedia(query).ConfigureAwait(false))
+			await foreach (var item in YoutubeService.SearchMedia(query))
 			{
 				list.Add(item);
 			}
@@ -58,7 +63,7 @@ public sealed partial class SearchViewModel : ViewModelBase
 		}
 	}
 
-	public async Task PlaySong(YoutubeMediaFile mediaFile)
+	public async Task PlaySongCommand(YoutubeMediaFile mediaFile)
 	{
 		var manifesTask = YoutubeService.GetManifestMedia(mediaFile);
 		var values = new Dictionary<string, object>
