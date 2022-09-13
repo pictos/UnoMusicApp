@@ -1,8 +1,7 @@
-using Android.App;
-using Android.Widget;
-using Android.OS;
-using Android.Content.PM;
+
+//using Application = Microsoft.UI.Xaml.Application;
 using Android.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace UnoMusicApp
 {
@@ -13,6 +12,11 @@ namespace UnoMusicApp
 		)]
 	public class MainActivity : Microsoft.UI.Xaml.ApplicationActivity
 	{
+		public override void OnBackPressed()
+		{
+			// It will break
+			var navigation = (Microsoft.UI.Xaml.Application.Current as App)!.Host.Services.GetRequiredService<INavigator>();
+		}
 	}
 }
 

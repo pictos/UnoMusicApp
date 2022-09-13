@@ -10,6 +10,8 @@ namespace UnoMusicApp.Presentation;
 public sealed partial class SearchViewModel : ViewModelBase
 {
 	string query = "Cícero";
+	private readonly INavigator navigator;
+
 	public string Query
 	{
 		get => query;
@@ -29,6 +31,12 @@ public sealed partial class SearchViewModel : ViewModelBase
 	void OnQueryChanged(string value)
 	{
 		Medias.Clear();
+	}
+
+	public SearchViewModel(
+		INavigator navigator)
+	{
+		this.navigator = navigator;
 	}
 
 	public async Task SearchForQueryCommand()
@@ -70,6 +78,6 @@ public sealed partial class SearchViewModel : ViewModelBase
 				{"mediaFile", mediaFile }
 			};
 
-		//await NavigationService.NavigateTo(typeof(PlayerPage), values).ConfigureAwait(false);
+		await navigator.NavigateViewModelAsync<PlayerViewModel>(this);
 	}
 }

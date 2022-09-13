@@ -44,7 +44,8 @@ public sealed partial class SearchPage : Page
 		e.Handled = true;
 		var textBlock = (TextBox)sender;
 		LoseFocus(textBlock);
-		Vm.SearchForQueryCommand.Execute(null);
+		_ = Vm.Model.SearchForQueryCommand();
+		//Vm.SearchForQueryCommand.Execute(null);
 	}
 
 	void LoseFocus(object sender)

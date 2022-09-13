@@ -3,7 +3,7 @@ namespace UnoMusicApp;
 
 public sealed partial class App : Application
 {
-	private IHost Host { get; } = BuildAppHost();
+	public IHost Host { get; } = BuildAppHost();
 
 	private static IHost BuildAppHost()
 	{
