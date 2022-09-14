@@ -15,6 +15,8 @@ sealed class MediaService
 	public YoutubeMediaFile CurrentMedia { get; private set; }
 	public List<YoutubeMediaFile> MediaFiles { get; } = new(5);
 
+	public string TotalDuration => TimeSpan.FromMilliseconds(mp.Media?.Duration ?? 0).ToStringTime();
+
 	public bool IsPlaying => mp.IsPlaying;
 
 	public Action<TimeSpan>? OnTimeChanged { get; set; }
@@ -99,7 +101,11 @@ sealed class MediaService
 				var duration = TimeSpan.FromMilliseconds(e.Length);
 				OnMediaInfo?.Invoke(duration);
 				mp.LengthChanged -= LengthChanged;
-				CurrentMedia = new(CurrentMedia.Title, CurrentMedia.ArtUrl, duration, CurrentMedia.ArtUrl, CurrentMedia.Id);
+				CurrentMedia = CurrentMedia with
+				{
+					Duration = duration
+				};
+				//CurrentMedia = new(CurrentMedia.Title, CurrentMedia.ArtUrl, duration, CurrentMedia.ArtUrl, CurrentMedia.Id);
 			}
 		});
 

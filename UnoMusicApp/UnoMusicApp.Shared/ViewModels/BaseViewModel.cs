@@ -11,6 +11,9 @@ namespace UnoMusicApp.ViewModels
 		[ObservableProperty]
 		bool isBusy;
 
+		[ObservableProperty]
+		string title = string.Empty;
+
 		protected YoutubeService YoutubeService => YoutubeService.Current;
 
 		protected MediaService MediaService => MediaService.Current;

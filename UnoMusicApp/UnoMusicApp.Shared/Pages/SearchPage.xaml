@@ -37,7 +37,10 @@
 								<ColumnDefinition Width="*" />
 							</Grid.ColumnDefinitions>
 
-							<Image Source="{Binding ArtUrl}" />
+							<Image
+								MaxWidth="150"
+								MaxHeight="150"
+								Source="{Binding ArtUrl}" />
 							<TextBlock
 								Grid.Column="1"
 								VerticalAlignment="Center"

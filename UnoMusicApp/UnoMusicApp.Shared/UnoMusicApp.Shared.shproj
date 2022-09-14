@@ -16,8 +16,11 @@
     <UpToDateCheckInput Remove="Pages\ShellPage.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <_Globbed_Compile Remove="Controls\CircleImage.cs" />
     <_Globbed_Compile Remove="Controls\HeaderControl.xaml.cs" />
+    <_Globbed_Compile Remove="Helpers\MediaHelper.cs" />
     <_Globbed_Compile Remove="Helpers\ObservableRangeCollection.cs" />
+    <_Globbed_Compile Remove="Helpers\Timer.cs" />
     <_Globbed_Compile Remove="Pages\ShellPage.xaml.cs" />
     <_Globbed_Compile Remove="ViewModels\PlayerViewModel.cs" />
   </ItemGroup>

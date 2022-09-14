@@ -22,10 +22,13 @@ namespace UnoMusicApp.Pages
     /// </summary>
     public sealed partial class PlayerPage : Page
     {
+        internal PlayerViewModel Vm => (PlayerViewModel)DataContext;
+
         public PlayerPage()
         {
             this.InitializeComponent();
             DataContext = new PlayerViewModel();
+           
         }
     }
 }
