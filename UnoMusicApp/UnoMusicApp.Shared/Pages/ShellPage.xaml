@@ -1,0 +1,28 @@
+﻿<Page
+	x:Class="UnoMusicApp.Pages.ShellPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="clr-namespace:UnoMusicApp.Controls"
+	xmlns:local="using:UnoMusicApp.Pages"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+
+	<NavigationView IsSettingsVisible="False">
+		<NavigationView.MenuItems>
+			<NavigationViewItem Content="Search" />
+			<NavigationViewItem Content="Player" />
+		</NavigationView.MenuItems>
+
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="40" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<c:HeaderControl />
+			<Frame
+				x:Name="contentFrame"
+				Grid.Row="1"
+				x:FieldModifier="public" />
+		</Grid>
+	</NavigationView>
+</Page>

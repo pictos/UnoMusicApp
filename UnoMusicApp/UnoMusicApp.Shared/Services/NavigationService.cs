@@ -1,27 +1,29 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using UnoMusicApp.Pages;
 using Windows.UI.Core;
 
 namespace UnoMusicApp.Services
 {
 	public static class NavigationService
 	{
-		static Frame CurrentFrame => App.Window.Content as Frame; //Microsoft.UI.Xaml.Window.Current.Content as Frame;
+		static ShellPage CurrentPage => ((App.Window.Content as Frame).Content as ShellPage); //Microsoft.UI.Xaml.Window.Current.Content as Frame;
 
-		static Page CurrentPage => CurrentFrame.Content as Page;
+		static Frame ContentFrame => CurrentPage.contentFrame;
 
 		public static void NavigateTo(Type pageType)
 		{
-			CurrentPage.Frame.Navigate(pageType);
+			ContentFrame.Navigate(pageType);
 		}
 
 		public static async ValueTask NavigateTo(Type pageType, object parameter)
 		{
-			CurrentPage.Frame.Navigate(pageType, parameter);
-			if (CurrentPage.DataContext is BaseViewModel vm)
+			ContentFrame.Navigate(pageType, parameter);
+			if ((ContentFrame.Content as FrameworkElement).DataContext is BaseViewModel vm)
 				await vm.InitializeAsync((Dictionary<string, object>)parameter);
 			
 			// Why this doesn't work on Win UI?
@@ -31,10 +33,9 @@ namespace UnoMusicApp.Services
 
 		public static void NavigateBack()
 		{
-			var stack = CurrentPage.Frame.BackStack;
-			var frame = CurrentPage.Frame;
-			if (CurrentPage.Frame.CanGoBack)
-				CurrentPage.Frame.GoBack();
+			var stack = ContentFrame.BackStack;
+			if (ContentFrame.CanGoBack)
+				ContentFrame.GoBack();
 		}
 	}
 }
