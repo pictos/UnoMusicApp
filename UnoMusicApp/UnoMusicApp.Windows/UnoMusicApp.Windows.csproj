@@ -31,6 +31,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
 		<PackageReference Include="YoutubeExplode" Version="6.2.1" />
+		<PackageReference Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.2" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 

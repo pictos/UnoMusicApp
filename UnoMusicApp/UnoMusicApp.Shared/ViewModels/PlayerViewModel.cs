@@ -135,11 +135,11 @@ namespace UnoMusicApp.ViewModels
 						break;
 					case "REPEAT":
 						MediaService.IsRepeateMode = !MediaService.IsRepeateMode;
-						RepeatActiveColor = MediaService.IsRepeateMode ? Colors.Fuchsia : Colors.White;
+						RepeatActiveColor = MediaService.IsRepeateMode ? new SolidColorBrush(Colors.Fuchsia) : new SolidColorBrush(Colors.White);
 						break;
 					case "SHUFFLE":
 						MediaService.IsRandomMode = !MediaService.IsRandomMode;
-						ShuffleActiveColor = MediaService.IsRandomMode ? Colors.Fuchsia : Colors.White;
+						ShuffleActiveColor = MediaService.IsRandomMode ? new SolidColorBrush(Colors.Fuchsia) : new SolidColorBrush(Colors.White);
 						break;
 					default:
 						break;
