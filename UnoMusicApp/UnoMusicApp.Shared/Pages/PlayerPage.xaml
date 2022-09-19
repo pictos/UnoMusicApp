@@ -26,12 +26,15 @@
 				<RowDefinition Height="48" />
 			</Grid.RowDefinitions>
 
-
-
-			<c:CircleImage Margin="30" Source="{Binding AlbumArt}" />
+			<c:CircleImage
+				x:Name="cicleImg"
+				Margin="10"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				Source="{Binding AlbumArt}" />
 
 			<c:CircleProgress
-				Margin="12"
+				Margin="0"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
 				LineBackgroundColor="Black"

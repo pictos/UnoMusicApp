@@ -20,10 +20,8 @@ public partial class CircleProgress : SKXamlCanvas
 		var surface = e.Surface;
 		var canvas = surface.Canvas;
 
-		var max = Math.Max(info.Height, info.Width);
 		var size = Math.Min(info.Width, info.Height);
-
-		canvas.Translate((max - size) / 2, 0);
+		//canvas.Translate((size) / 2, 0);
 
 		canvas.Clear();
 		canvas.Save();

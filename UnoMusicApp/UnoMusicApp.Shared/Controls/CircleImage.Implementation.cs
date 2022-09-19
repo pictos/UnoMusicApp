@@ -19,7 +19,7 @@ public partial class CircleImage : SKXamlCanvas
 		var surface = e.Surface;
 		var canvas = surface.Canvas;
 
-		canvas.Clear(SKColors.Fuchsia);
+		canvas.Clear(SKColors.Transparent);
 
 		if (bitmap is null)
 			return;
@@ -36,7 +36,7 @@ public partial class CircleImage : SKXamlCanvas
 			new SKColor[] { SKColors.Transparent,SKColors.White },
 			new float[] { 0.8f, 1 },
 			SKShaderTileMode.Clamp);
-
+		canvas.Translate(0, -22);
 		var rect = SKRect.Create(bitmap.Width, bitmap.Height);
 		canvas.DrawBitmap(bitmap, info.Rect);
 		canvas.DrawRect(info.Rect, circleFill);
