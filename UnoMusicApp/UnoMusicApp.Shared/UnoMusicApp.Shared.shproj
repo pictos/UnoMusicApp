@@ -16,7 +16,8 @@
     <UpToDateCheckInput Remove="Pages\ShellPage.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <_Globbed_Compile Remove="Controls\CircleImage.cs" />
+    <_Globbed_Compile Remove="Controls\CircleImage.Properties.cs" />
+    <_Globbed_Compile Remove="Controls\CircleProgress.Properties.cs" />
     <_Globbed_Compile Remove="Controls\HeaderControl.xaml.cs" />
     <_Globbed_Compile Remove="Helpers\MediaHelper.cs" />
     <_Globbed_Compile Remove="Helpers\ObservableRangeCollection.cs" />

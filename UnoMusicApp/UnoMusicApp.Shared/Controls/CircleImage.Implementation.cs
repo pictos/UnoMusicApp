@@ -1,4 +1,4 @@
-﻿#if ANDROID || IOS || MACCATALYST
+﻿#if __ANDROID__ || __IOS__ || __MACCATALYST__
 
 using Microsoft.UI.Xaml;
 using SkiaSharp;
@@ -12,27 +12,7 @@ namespace UnoMusicApp.Controls;
 public partial class CircleImage : SKXamlCanvas
 {
 	static HttpClient httpClient = new();
-	static readonly PropertyChangedCallback changedCallback = new(OnPropertyChanged);
 
-	public static readonly DependencyProperty SourceProperty =
-		DependencyProperty.Register(nameof(Source), typeof(string), typeof(CircleImage), new(string.Empty, changedCallback));
-
-	public string Source
-	{
-		get => (string)GetValue(SourceProperty);
-		set => SetValue(SourceProperty, value);
-	}
-
-	static async void OnPropertyChanged(DependencyObject bindable, DependencyPropertyChangedEventArgs e)
-	{
-		var circleImage = bindable as CircleImage;
-
-		if (circleImage is null || e.NewValue is null)
-			return;
-
-		await circleImage.GetImageAsync();
-		circleImage?.Invalidate();
-	}
 	protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
 	{
 		var info = e.Info;
@@ -75,7 +55,9 @@ public partial class CircleImage : SKXamlCanvas
 	}
 }
 #else
-public class CircleImage : Microsoft.UI.Xaml.FrameworkElement
+namespace UnoMusicApp.Controls;
+
+public partial class CircleImage : Microsoft.UI.Xaml.Controls.UserControl
 { 
 }
 #endif

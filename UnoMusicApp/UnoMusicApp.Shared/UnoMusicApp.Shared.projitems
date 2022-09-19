@@ -18,8 +18,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CircleImage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CircleProgress.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CircleImage.Implementation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CircleImage.Properties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CircleProgress.Implementation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CircleProgress.Properties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HeaderControl.xaml.cs">
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
