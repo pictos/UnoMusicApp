@@ -89,9 +89,9 @@ public sealed partial class App : Application
 			Window.Activate();
 		}
 
-		var v = SystemNavigationManager.GetForCurrentView();
-		v.BackRequested += App_BackRequested;
-		v.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+		//var v = SystemNavigationManager.GetForCurrentView();
+		//v.BackRequested += App_BackRequested;
+		//v.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
 	}
 
 	private void App_BackRequested(object sender, BackRequestedEventArgs e)
