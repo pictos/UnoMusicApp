@@ -43,7 +43,7 @@ namespace UnoMusicApp.ViewModels
 				{
 					list.Add(item);
 				}
-
+				Medias.Clear();
 				Medias.AddRange(list);
 			}
 			finally

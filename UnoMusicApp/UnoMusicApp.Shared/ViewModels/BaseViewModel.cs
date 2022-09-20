@@ -18,6 +18,8 @@ namespace UnoMusicApp.ViewModels
 
 		protected MediaService MediaService => MediaService.Current;
 
+		protected WeakReferenceMessenger Messagecenter => WeakReferenceMessenger.Default;
+
 		public virtual ValueTask InitializeAsync(Dictionary<string, object> args) => ValueTask.CompletedTask;
 
 		//protected virtual ValueTask InitAsync(ReadOnlyDictionary<string, object> args)

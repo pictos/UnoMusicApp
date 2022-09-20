@@ -1,6 +1,4 @@
 ﻿#if __ANDROID__ || __IOS__ || __MACCATALYST__
-
-using Microsoft.UI.Xaml;
 using SkiaSharp;
 using SkiaSharp.Views.Windows;
 using System;
