@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Media;
 using SkiaSharp;
 using SkiaSharp.Views.Windows;
 using System;
+using Windows.ApplicationModel.Background;
 using Windows.UI;
 
 namespace UnoMusicApp.Controls;
@@ -13,6 +14,8 @@ public partial class CircleProgress : SKXamlCanvas
 	
 	const float StartAngle = 15;
 	const float SweepAngle = 270;
+	const float baseSize = 100f;
+
 
 	protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
 	{
@@ -20,12 +23,11 @@ public partial class CircleProgress : SKXamlCanvas
 		var surface = e.Surface;
 		var canvas = surface.Canvas;
 
-		var size = Math.Min(info.Width, info.Height);
-		//canvas.Translate((size) / 2, 0);
-
+		canvas.Scale(info.Width / baseSize );
+		canvas.Translate(0, 0);
 		canvas.Clear();
 		canvas.Save();
-		canvas.RotateDegrees(120, size / 2, size / 2);
+		canvas.RotateDegrees(120, baseSize / 2, baseSize / 2);
 		DrawBackgroundCircle(info, canvas);
 		DrawProgressCircle(info, canvas);
 
@@ -64,14 +66,12 @@ public partial class CircleProgress : SKXamlCanvas
 
 	void DrawCircle(SKImageInfo info, SKCanvas canvas, SKPaint paint, float angle)
 	{
-		int size = Math.Min(info.Width, info.Height);
-
 		using var path = new SKPath();
 		var rect = new SKRect(
 			StrokeWidth,
 			StrokeWidth,
-			size - StrokeWidth,
-			size - StrokeWidth);
+			baseSize - StrokeWidth,
+			baseSize - StrokeWidth);
 
 		path.AddArc(rect, StartAngle, angle);
 

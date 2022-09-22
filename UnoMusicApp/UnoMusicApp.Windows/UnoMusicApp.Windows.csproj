@@ -13,6 +13,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Content Include="..\Fonts\fa-brands-400.ttf" Link="Assets\Fonts\fa-brands-400.ttf" />
+		<Content Include="..\Fonts\fa-regular-400.ttf" Link="Assets\Fonts\fa-regular-400.ttf" />
+		<Content Include="..\Fonts\fa-solid-900.ttf" Link="Assets\Fonts\fa-solid-900.ttf" />
 		<Content Include="Images\SplashScreen.scale-200.png" />
 		<Content Include="Images\LockScreenLogo.scale-200.png" />
 		<Content Include="Images\Square150x150Logo.scale-200.png" />
@@ -55,6 +58,10 @@
 		-->
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22000.25" />
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22000.25" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Assets\Fonts\" />
 	</ItemGroup>
 	
 	<Import Project="..\UnoMusicApp.Shared\UnoMusicApp.Shared.projitems" Label="Shared" />

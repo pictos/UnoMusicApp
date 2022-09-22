@@ -7,9 +7,12 @@ using System.Net.Http;
 
 namespace UnoMusicApp.Controls;
 
+
+// https://dotnetdevaddict.co.za/2020/01/12/who-cares-about-the-view-anyway/
 public partial class CircleImage : SKXamlCanvas
 {
 	static HttpClient httpClient = new();
+	const float baseSize = 100f;
 
 	protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
 	{
@@ -22,21 +25,22 @@ public partial class CircleImage : SKXamlCanvas
 		if (bitmap is null)
 			return;
 
-		var sizeValue = Math.Min(info.Width, info.Height);
-
-		var x = info.Width /2;
-		var y = info.Height/2;
-
+		canvas.Scale(info.Width / baseSize);
+		
+		var size = baseSize - 15;
+		var x = size / 2;
+		var y = size / 2;
+		canvas.Translate(6.65f, 26.5f);
 		using var circleFill = new SKPaint();
 
 		circleFill.Shader = SKShader.CreateRadialGradient(new SKPoint(x, y),
-			sizeValue / 2, 
-			new SKColor[] { SKColors.Transparent,SKColors.White },
+			size/ 2,
+			new SKColor[] { SKColors.Transparent, SKColors.White },
 			new float[] { 0.8f, 1 },
 			SKShaderTileMode.Clamp);
 		canvas.Translate(0, -22);
-		var rect = SKRect.Create(bitmap.Width, bitmap.Height);
-		canvas.DrawBitmap(bitmap, info.Rect);
+		var rect = SKRect.Create(size, size);
+		canvas.DrawBitmap(bitmap, rect);
 		canvas.DrawRect(info.Rect, circleFill);
 	}
 

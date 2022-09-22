@@ -4,12 +4,20 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:c="using:UnoMusicApp.Controls"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:local="using:UnoMusicApp.Pages"
+	xmlns:local="using:UnoMusicApp"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:vm="clr-namespace:UnoMusicApp.ViewModels"
 	Background="White"
 	mc:Ignorable="d">
 	<Grid RowSpacing="0">
+
+		<Grid.Resources>
+			<ResourceDictionary>
+				<Style TargetType="Button">
+					<Setter Property="FontFamily" Value="ms-appx:///Assets/Fonts/fa-solid-900.ttf#Font Awesome 6 Free Solid" />
+				</Style>
+			</ResourceDictionary>
+		</Grid.Resources>
 
 		<Grid.RowDefinitions>
 			<RowDefinition Height="100" />
@@ -39,11 +47,18 @@
 				VerticalAlignment="Stretch"
 				LineBackgroundColor="Black"
 				ProgressColor="Red"
-				StrokeWidth="12" />
+				StrokeWidth="2" />
 
-			<Grid Grid.Row="1" Margin="50,0">
-				<TextBlock />
-			</Grid>
+			<StackPanel
+				Grid.Row="1"
+				Margin="50,0"
+				Orientation="Horizontal">
+				<Button Content="{x:Bind local:FA.Backward}" />
+				<Button Content="{x:Bind local:FA.BackwardFast}" />
+				<Button Content="{x:Bind local:FA.Play}" />
+				<Button Content="{x:Bind local:FA.FowardFast}" />
+				<Button Content="{x:Bind local:FA.Next}" />
+			</StackPanel>
 		</Grid>
 	</Grid>
 </Page>

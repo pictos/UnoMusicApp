@@ -26,6 +26,7 @@
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)GlobalUsings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\FA.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MediaHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MediaHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ObservableRangeCollection.cs" />
