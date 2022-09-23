@@ -23,12 +23,17 @@ namespace UnoMusicApp.Services
 		public static async ValueTask NavigateTo(Type pageType, object parameter)
 		{
 			ContentFrame.Navigate(pageType, parameter);
-			if ((ContentFrame.Content as FrameworkElement).DataContext is BaseViewModel vm)
+			if ((ContentFrame.Content as FrameworkElement)?.DataContext is BaseViewModel vm)
 				await vm.InitializeAsync((Dictionary<string, object>)parameter);
 			
 			// Why this doesn't work on Win UI?
 			//var v = SystemNavigationManager.GetForCurrentView();
 			//v.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+		}
+
+		public static Task InvokeOnMainThreadAsync(Action action)
+		{
+			return ContentFrame.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action?.Invoke()).AsTask();
 		}
 
 		public static void NavigateBack()

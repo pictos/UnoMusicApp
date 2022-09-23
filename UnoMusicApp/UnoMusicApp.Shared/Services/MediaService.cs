@@ -84,7 +84,7 @@ sealed class MediaService
 		Task.Run(() => OnIsPlayingChanged?.Invoke(false));
 
 	void Playing(object? sender, EventArgs e) =>
-		Task.Run(() => OnIsPlayingChanged?.Invoke(true));
+		NavigationService.InvokeOnMainThreadAsync(() => OnIsPlayingChanged?.Invoke(true));
 
 	void EndReached(object? sender, EventArgs e) =>
 		Task.Run(() =>

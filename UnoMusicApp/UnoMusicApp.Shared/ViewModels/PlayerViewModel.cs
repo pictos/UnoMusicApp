@@ -9,6 +9,10 @@ namespace UnoMusicApp.ViewModels
 {
 	sealed partial class PlayerViewModel : BaseViewModel
 	{
+		static readonly Lazy<PlayerViewModel> lazyPlayer = new(() => new());
+
+		internal static PlayerViewModel Current => lazyPlayer.Value;
+
 		static readonly SolidColorBrush defaultColor = new(Colors.White);
 		const int OFFSET = 5_000;
 		YoutubeMediaFile mediaFile;
@@ -32,6 +36,9 @@ namespace UnoMusicApp.ViewModels
 
 		[ObservableProperty]
 		Brush shuffleActiveColor = defaultColor;
+
+		[ObservableProperty]
+		string playText = FA.Pause;
 
 		public override async ValueTask InitializeAsync(Dictionary<string, object> args)
 		{
@@ -71,6 +78,7 @@ namespace UnoMusicApp.ViewModels
 
 		void ControlMusicAnimation()
 		{
+			PlayText = MediaService.IsPlaying ? FA.Pause : FA.Play;
 			//throw new NotImplementedException();
 		}
 

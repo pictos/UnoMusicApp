@@ -10,11 +10,14 @@
 	Background="White"
 	mc:Ignorable="d">
 	<Grid RowSpacing="0">
-
 		<Grid.Resources>
 			<ResourceDictionary>
 				<Style TargetType="Button">
 					<Setter Property="FontFamily" Value="ms-appx:///Assets/Fonts/fa-solid-900.ttf#Font Awesome 6 Free Solid" />
+					<Setter Property="MinHeight" Value="50" />
+					<Setter Property="MinWidth" Value="50" />
+					<Setter Property="Foreground" Value="Black" />
+					<Setter Property="Background" Value="Transparent" />
 				</Style>
 			</ResourceDictionary>
 		</Grid.Resources>
@@ -49,16 +52,63 @@
 				ProgressColor="Red"
 				StrokeWidth="2" />
 
-			<StackPanel
+			<Button
+				Width="60"
+				Height="60"
+				Margin="0,15,0,0"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Background="#DE5154"
+				Command="{Binding PlayPauseCommand}"
+				Content="{Binding PlayText}"
+				CornerRadius="30">
+				<!--<Button.Content>
+					<TextBlock Foreground="Black" Text="{Binding PlayText}" />
+				</Button.Content>-->
+			</Button>
+
+			<Grid
 				Grid.Row="1"
 				Margin="50,0"
-				Orientation="Horizontal">
-				<Button Content="{x:Bind local:FA.Backward}" />
-				<Button Content="{x:Bind local:FA.BackwardFast}" />
-				<Button Content="{x:Bind local:FA.Play}" />
-				<Button Content="{x:Bind local:FA.FowardFast}" />
-				<Button Content="{x:Bind local:FA.Next}" />
-			</StackPanel>
+				ColumnSpacing="10">
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="5" />
+				</Grid.ColumnDefinitions>
+				<TextBlock FontSize="16" Text="00:00" />
+				<Button
+					Grid.Column="2"
+					Background="Transparent"
+					Content="{x:Bind local:FA.Shuffle}"
+					FontSize="16" />
+				<Button
+					Grid.Column="3"
+					Height="30"
+					Background="Transparent"
+					Content="{x:Bind local:FA.Repeat}"
+					FontSize="16" />
+				<TextBlock
+					Grid.Column="5"
+					FontSize="16"
+					Text="00:00" />
+			</Grid>
 		</Grid>
+		<StackPanel
+			Grid.Row="2"
+			Margin="50,0"
+			HorizontalAlignment="Center"
+			Orientation="Horizontal"
+			Spacing="5">
+			<Button Content="{x:Bind local:FA.Backward}" />
+			<Button Content="{x:Bind local:FA.BackwardFast}" />
+			<Button Content="{x:Bind local:FA.FowardFast}" />
+			<Button Content="{x:Bind local:FA.Next}" />
+		</StackPanel>
 	</Grid>
 </Page>

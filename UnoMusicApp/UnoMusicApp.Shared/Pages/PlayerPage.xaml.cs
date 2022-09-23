@@ -15,7 +15,8 @@ namespace UnoMusicApp.Pages
 		public PlayerPage()
 		{
 			this.InitializeComponent();
-			DataContext = new PlayerViewModel();
+			DataContext = PlayerViewModel.Current;
+			
 		}
 	}
 }
