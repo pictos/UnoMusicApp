@@ -78,6 +78,8 @@ namespace UnoMusicApp.ViewModels
 
 		void ControlMusicAnimation()
 		{
+			if (!ThreadHelpers.WhatThreadAmI())
+				_ = true;
 			PlayText = MediaService.IsPlaying ? FA.Pause : FA.Play;
 		}
 

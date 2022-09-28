@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using YoutubeExplode.Videos;
-using static UnoMusicApp.Models;
 
 namespace UnoMusicApp.Helpers;
 static class MediaHelpers
