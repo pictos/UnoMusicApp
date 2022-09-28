@@ -23,18 +23,25 @@ public partial class CircleProgress : SKXamlCanvas
 		var surface = e.Surface;
 		var canvas = surface.Canvas;
 
-		canvas.Scale(info.Width / baseSize );
-		canvas.Translate(0, 0);
+		var min = Math.Min(info.Height, info.Width);
+		var scale = min / baseSize;
+		canvas.Scale(scale);
 		canvas.Clear();
 		canvas.Save();
+
+		var newH = info.Height / scale;
+		var newW = info.Width / scale;
+
+		canvas.Translate((newW - baseSize) / 2, 0);
+
 		canvas.RotateDegrees(120, baseSize / 2, baseSize / 2);
-		DrawBackgroundCircle(info, canvas);
-		DrawProgressCircle(info, canvas);
+		DrawBackgroundCircle(canvas);
+		DrawProgressCircle(canvas);
 
 		canvas.Restore();
 	}
 
-	void DrawBackgroundCircle(SKImageInfo info, SKCanvas canvas)
+	void DrawBackgroundCircle(SKCanvas canvas)
 	{
 		var paint = new SKPaint
 		{
@@ -45,10 +52,10 @@ public partial class CircleProgress : SKXamlCanvas
 			StrokeCap = SKStrokeCap.Round
 		};
 
-		DrawCircle(info, canvas, paint, SweepAngle);
+		DrawCircle(canvas, paint, SweepAngle);
 	}
 
-	void DrawProgressCircle(SKImageInfo info, SKCanvas canvas)
+	void DrawProgressCircle(SKCanvas canvas)
 	{
 		float progressAngle = SweepAngle * Progress;
 
@@ -61,10 +68,10 @@ public partial class CircleProgress : SKXamlCanvas
 			StrokeCap = SKStrokeCap.Round
 		};
 
-		DrawCircle(info, canvas, paint, progressAngle);
+		DrawCircle(canvas, paint, progressAngle);
 	}
 
-	void DrawCircle(SKImageInfo info, SKCanvas canvas, SKPaint paint, float angle)
+	void DrawCircle(SKCanvas canvas, SKPaint paint, float angle)
 	{
 		using var path = new SKPath();
 		var rect = new SKRect(

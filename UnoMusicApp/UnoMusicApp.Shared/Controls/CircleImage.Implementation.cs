@@ -13,6 +13,7 @@ public partial class CircleImage : SKXamlCanvas
 {
 	static HttpClient httpClient = new();
 	const float baseSize = 100f;
+	const float halfBaseSize = 50f;
 
 	protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
 	{
@@ -25,21 +26,25 @@ public partial class CircleImage : SKXamlCanvas
 		if (bitmap is null)
 			return;
 
-		canvas.Scale(info.Width / baseSize);
-		
-		var size = baseSize - 15;
-		var x = size / 2;
-		var y = size / 2;
-		canvas.Translate(6.65f, 26.5f);
+		var min = Math.Min(info.Height, info.Width);
+
+		var scale = min / baseSize;
+
+		canvas.Scale(scale);
+
+		var newH = info.Height / scale;
+		var newW = info.Width / scale;
+		var dx = (newW - baseSize) / 2;
+		var dy = (newH - baseSize) / 2;
+		canvas.Translate(dx,dy);
 		using var circleFill = new SKPaint();
 
-		circleFill.Shader = SKShader.CreateRadialGradient(new SKPoint(x, y),
-			size/ 2,
+		circleFill.Shader = SKShader.CreateRadialGradient(new SKPoint(halfBaseSize, halfBaseSize),
+			halfBaseSize,
 			new SKColor[] { SKColors.Transparent, SKColors.White },
 			new float[] { 0.8f, 1 },
 			SKShaderTileMode.Clamp);
-		canvas.Translate(0, -22);
-		var rect = SKRect.Create(size, size);
+		var rect = SKRect.Create(baseSize, baseSize);
 		canvas.DrawBitmap(bitmap, rect);
 		canvas.DrawRect(info.Rect, circleFill);
 	}

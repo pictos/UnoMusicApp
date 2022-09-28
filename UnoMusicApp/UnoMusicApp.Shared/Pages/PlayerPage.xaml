@@ -39,7 +39,7 @@
 
 			<c:CircleImage
 				x:Name="cicleImg"
-				Margin="10"
+				Margin="20"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
 				Source="{Binding AlbumArt}" />
@@ -56,7 +56,6 @@
 				x:Name="btn"
 				Width="60"
 				Height="60"
-				Margin="0,15,0,0"
 				HorizontalAlignment="Center"
 				VerticalAlignment="Center"
 				Background="#DE5154"
