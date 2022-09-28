@@ -1,0 +1,12 @@
+{
+  "solution": {
+    "path": "UnoMusicApp.sln",
+    "projects": [
+      "UnoMusicApp\\UnoMusicApp.Mobile\\UnoMusicApp.Mobile.csproj",
+      "UnoMusicApp\\UnoMusicApp.Skia.Gtk\\UnoMusicApp.Skia.Gtk.csproj",
+      "UnoMusicApp\\UnoMusicApp.UI\\UnoMusicApp.UI.shproj",
+      "UnoMusicApp\\UnoMusicApp.Wasm\\UnoMusicApp.Wasm.csproj",
+      "UnoMusicApp\\UnoMusicApp\\UnoMusicApp.csproj"
+    ]
+  }
+}
