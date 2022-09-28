@@ -79,7 +79,6 @@ namespace UnoMusicApp.ViewModels
 		void ControlMusicAnimation()
 		{
 			PlayText = MediaService.IsPlaying ? FA.Pause : FA.Play;
-			//throw new NotImplementedException();
 		}
 
 		void FillData(in YoutubeMediaFile media)

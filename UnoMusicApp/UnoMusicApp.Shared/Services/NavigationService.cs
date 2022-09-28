@@ -6,12 +6,13 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using UnoMusicApp.Pages;
 using Windows.UI.Core;
+using System.Threading;
 
 namespace UnoMusicApp.Services
 {
 	public static class NavigationService
 	{
-		static ShellPage CurrentPage => ((App.Window.Content as Frame).Content as ShellPage); //Microsoft.UI.Xaml.Window.Current.Content as Frame;
+		static ShellPage CurrentPage => ((App.Window.Content as Frame)!.Content as ShellPage)!; //Microsoft.UI.Xaml.Window.Current.Content as Frame;
 
 		static Frame ContentFrame => CurrentPage.contentFrame;
 
@@ -29,11 +30,6 @@ namespace UnoMusicApp.Services
 			// Why this doesn't work on Win UI?
 			//var v = SystemNavigationManager.GetForCurrentView();
 			//v.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-		}
-
-		public static Task InvokeOnMainThreadAsync(Action action)
-		{
-			return ContentFrame.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action?.Invoke()).AsTask();
 		}
 
 		public static void NavigateBack()

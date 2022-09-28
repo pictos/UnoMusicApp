@@ -21,6 +21,7 @@
     <_Globbed_Compile Remove="Controls\HeaderControl.xaml.cs" />
     <_Globbed_Compile Remove="Helpers\MediaHelper.cs" />
     <_Globbed_Compile Remove="Helpers\ObservableRangeCollection.cs" />
+    <_Globbed_Compile Remove="Helpers\ThreadHelpers.cs" />
     <_Globbed_Compile Remove="Helpers\Timer.cs" />
     <_Globbed_Compile Remove="Messages\IsPlayingMessage.cs" />
     <_Globbed_Compile Remove="Pages\ShellPage.xaml.cs" />

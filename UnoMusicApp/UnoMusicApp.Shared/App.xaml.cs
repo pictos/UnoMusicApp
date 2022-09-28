@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using System;
+using System.Threading;
 using UnoMusicApp.Pages;
 using UnoMusicApp.Services;
 using Windows.ApplicationModel;
@@ -16,7 +17,9 @@ namespace UnoMusicApp;
 public sealed partial class App : Application
 {
 	internal static Window Window { get; private set; }
-	
+
+	internal static SynchronizationContext SynchronizationContext { get; private set; }
+
 	/// <summary>
 	/// Initializes the singleton application object.  This is the first line of authored code
 	/// executed, and as such is the logical equivalent of main() or WinMain().
@@ -26,9 +29,9 @@ public sealed partial class App : Application
 		InitializeLogging();
 
 		this.InitializeComponent();
-
+		SynchronizationContext = SynchronizationContext.Current!;
 #if HAS_UNO || NETFX_CORE
-            this.Suspending += OnSuspending;
+		this.Suspending += OnSuspending;
 #endif
 	}
 

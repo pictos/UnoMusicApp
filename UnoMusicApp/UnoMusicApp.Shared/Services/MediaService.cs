@@ -81,20 +81,20 @@ sealed class MediaService
 		mp.Time = time;
 
 	void Paused(object? sender, EventArgs e) =>
-		Task.Run(() => OnIsPlayingChanged?.Invoke(false));
+		ThreadHelpers.BeginInvokeOnMainThread(() => OnIsPlayingChanged?.Invoke(false));
 
 	void Playing(object? sender, EventArgs e) =>
-		NavigationService.InvokeOnMainThreadAsync(() => OnIsPlayingChanged?.Invoke(true));
+		ThreadHelpers.BeginInvokeOnMainThread(() => OnIsPlayingChanged?.Invoke(true));
 
 	void EndReached(object? sender, EventArgs e) =>
-		Task.Run(() =>
+		ThreadHelpers.BeginInvokeOnMainThread(() =>
 		{
 			OnFinished?.Invoke();
 			NextMusic();
 		});
 
 	void LengthChanged(object? sender, MediaPlayerLengthChangedEventArgs e) =>
-		Task.Run(() =>
+		ThreadHelpers.BeginInvokeOnMainThread(() =>
 		{
 			if (e.Length > 0)
 			{
@@ -105,18 +105,17 @@ sealed class MediaService
 				{
 					Duration = duration
 				};
-				//CurrentMedia = new(CurrentMedia.Title, CurrentMedia.ArtUrl, duration, CurrentMedia.ArtUrl, CurrentMedia.Id);
 			}
 		});
 
 	void PositionChanged(object? sender, MediaPlayerPositionChangedEventArgs e) =>
-		Task.Run(() => OnPositionChanged?.Invoke(e.Position));
+		ThreadHelpers.BeginInvokeOnMainThread(() => OnPositionChanged?.Invoke(e.Position));
 
 	void TimeChanged(object? sender, MediaPlayerTimeChangedEventArgs e) =>
-		Task.Run(() => OnTimeChanged?.Invoke(TimeSpan.FromMilliseconds(e.Time)));
+		ThreadHelpers.BeginInvokeOnMainThread(() => OnTimeChanged?.Invoke(TimeSpan.FromMilliseconds(e.Time)));
 
 	void OnMpMediaChanged(object? sender, MediaPlayerMediaChangedEventArgs e) =>
-		Task.Run(() =>
+		ThreadHelpers.BeginInvokeOnMainThread(() =>
 		{
 			mp.LengthChanged -= LengthChanged;
 			mp.LengthChanged += LengthChanged;
@@ -146,6 +145,7 @@ sealed class MediaService
 	{
 		if (CurrentMedia == default)
 			return;
+
 		var media = CurrentMedia;
 		var index = MediaFiles.IndexOf(media);
 		index--;
@@ -171,7 +171,6 @@ sealed class MediaService
 
 	void Init()
 	{
-		// Utils.WhatThreadAmI();
 		if (!isInit)
 		{
 			isInit = true;

@@ -53,6 +53,7 @@
 				StrokeWidth="2" />
 
 			<Button
+				x:Name="btn"
 				Width="60"
 				Height="60"
 				Margin="0,15,0,0"
@@ -61,11 +62,7 @@
 				Background="#DE5154"
 				Command="{Binding PlayPauseCommand}"
 				Content="{Binding PlayText}"
-				CornerRadius="30">
-				<!--<Button.Content>
-					<TextBlock Foreground="Black" Text="{Binding PlayText}" />
-				</Button.Content>-->
-			</Button>
+				CornerRadius="30" />
 
 			<Grid
 				Grid.Row="1"
@@ -81,7 +78,7 @@
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition Width="5" />
 				</Grid.ColumnDefinitions>
-				<TextBlock FontSize="16" Text="00:00" />
+				<TextBlock FontSize="16" Text="{Binding CurrentTime}" />
 				<Button
 					Grid.Column="2"
 					Background="Transparent"
@@ -96,7 +93,7 @@
 				<TextBlock
 					Grid.Column="5"
 					FontSize="16"
-					Text="00:00" />
+					Text="{Binding Total}" />
 			</Grid>
 		</Grid>
 		<StackPanel
