@@ -1,6 +1,7 @@
 ﻿using LibVLCSharp.Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using MP = LibVLCSharp.Shared.MediaPlayer;
 
 namespace UnoMusicApp.Services;
@@ -18,6 +19,8 @@ sealed class MediaService
 	public string TotalDuration => TimeSpan.FromMilliseconds(mp.Media?.Duration ?? 0).ToStringTime();
 
 	public bool IsPlaying => mp.IsPlaying;
+
+	public bool IsStoped { get; private set; }
 
 	public Action<TimeSpan>? OnTimeChanged { get; set; }
 
@@ -47,17 +50,18 @@ sealed class MediaService
 		if (mp.Media is not null)
 			mp.Stop();
 
+		CurrentMedia = mediaFile;
 		mp.Media = new(libVLC, mediaFile.Url, FromType.FromLocation);
 		mp.Media.AddOption(":no-video");
+		IsStoped = false;
 		mp.Play();
-		CurrentMedia = mediaFile;
 		AddToPlaylist();
 		Init();
 	}
 
 	void AddToPlaylist()
 	{
-		if (MediaFiles.Contains(CurrentMedia))
+		if (MediaFiles.Any(x => x.Id == CurrentMedia.Id))
 			return;
 
 		MediaFiles.Add(CurrentMedia);
@@ -90,8 +94,21 @@ sealed class MediaService
 		ThreadHelpers.BeginInvokeOnMainThread(() =>
 		{
 			OnFinished?.Invoke();
+
+			if (ShouldReturn())
+				return;
+
 			NextMusic();
+
+
+			bool ShouldReturn()
+			{
+				var media = CurrentMedia;
+				var index = MediaFiles.IndexOf(media);
+				return !IsRepeateMode && (++index == MediaFiles.Count);
+			}
 		});
+
 
 	void LengthChanged(object? sender, MediaPlayerLengthChangedEventArgs e) =>
 		ThreadHelpers.BeginInvokeOnMainThread(() =>
@@ -122,21 +139,26 @@ sealed class MediaService
 			OnMediaChanged?.Invoke();
 		});
 
+	void OnStop(object? sender, EventArgs e) =>
+		ThreadHelpers.BeginInvokeOnMainThread(() => IsStoped = true);
+
 	public void NextMusic()
 	{
 		if (CurrentMedia == default)
 			return;
+
 		var media = CurrentMedia;
+		var totalMedia = MediaFiles.Count;
 		var index = MediaFiles.IndexOf(media);
 		index = index is -1 ? 0 : index;
 
 		if (!IsRepeateMode)
 			index = IsRandomMode
-				? Random.Shared.Next(0, MediaFiles.Count - 1)
+				? Random.Shared.Next(0, totalMedia - 1)
 				: ++index;
 
-		if (index > MediaFiles.Count)
-			index = MediaFiles.Count;
+		if (index > totalMedia)
+			index = totalMedia;
 
 		SetCurrentMusic(ref index);
 	}
@@ -182,7 +204,7 @@ sealed class MediaService
 			mp.Playing += Playing;
 			mp.Paused += Paused;
 			mp.MediaChanged += OnMpMediaChanged;
+			mp.Stopped += OnStop;
 		}
 	}
-
 }

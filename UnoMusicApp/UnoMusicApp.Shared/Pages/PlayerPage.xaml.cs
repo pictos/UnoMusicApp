@@ -25,12 +25,24 @@ namespace UnoMusicApp.Pages
 			WeakReferenceMessenger.Default.Register<IsPlayingMessage>(this, OnIsPlayingChanged);
 		}
 
+		bool isFirstMusicTime = true;
 		void OnIsPlayingChanged(object recipient, IsPlayingMessage message)
 		{
-			if (message.Value)
+			var (isPlaying, isStoped) = message.Value;
+			if (isPlaying && isFirstMusicTime)
+			{
 				rotateImg.Begin();
-			else
+				isFirstMusicTime = false;
+			}
+			else if (isPlaying)
+				rotateImg.Resume();
+			else if (isStoped)
+			{
 				rotateImg.Stop();
+				isFirstMusicTime = true;
+			}
+			else
+				rotateImg.Pause();
 		}
 	}
 }

@@ -60,10 +60,16 @@ namespace UnoMusicApp.ViewModels
 			PlayPause(mediaFile);
 			FillData(mediaFile);
 		}
+
 		void OnPositionChanged(float position) =>
 			Progress = position;
-		void OnMediaChanged() =>
+
+		void OnMediaChanged()
+		{
 			Total = MediaService.TotalDuration;
+			AlbumArt = MediaService.CurrentMedia.ArtUrl;
+		}
+
 		void OnProgressChanged(TimeSpan duration) =>
 			CurrentTime = duration.ToStringTime();
 
@@ -72,6 +78,7 @@ namespace UnoMusicApp.ViewModels
 
 		void PlayPause(YoutubeMediaFile media) =>
 			MediaService.SetSong(media);
+
 		void OnIsPlayingChanged(bool isPlaying) =>
 			ControlMusicAnimation();
 
@@ -80,11 +87,8 @@ namespace UnoMusicApp.ViewModels
 
 		void ControlMusicAnimation()
 		{
-			if (!ThreadHelpers.WhatThreadAmI())
-				_ = true;
-
 			PlayText = MediaService.IsPlaying ? FA.Pause : FA.Play;
-			Messagecenter.Send(new IsPlayingMessage(MediaService.IsPlaying));
+			Messagecenter.Send(new IsPlayingMessage((MediaService.IsPlaying, MediaService.IsStoped)));
 		}
 
 		void FillData(in YoutubeMediaFile media)
