@@ -2,6 +2,8 @@
 using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
+using UnoMusicApp.Helpers;
+using UnoMusicApp.Messages;
 using UnoMusicApp.Services;
 using YoutubeExplode.Videos.Streams;
 
@@ -42,8 +44,8 @@ namespace UnoMusicApp.ViewModels
 
 		public override async ValueTask InitializeAsync(Dictionary<string, object> args)
 		{
-			var manifestTask = (Task<AudioOnlyStreamInfo>)args["audioInfo"];
-			mediaFile = (YoutubeMediaFile)args["mediaFile"];
+			var manifestTask = args.GetQueryValue<Task<AudioOnlyStreamInfo>>("audioInfo");
+			mediaFile = args.GetQueryValue<YoutubeMediaFile>("mediaFile");
 
 			var videoManifest = await manifestTask;
 
@@ -80,7 +82,9 @@ namespace UnoMusicApp.ViewModels
 		{
 			if (!ThreadHelpers.WhatThreadAmI())
 				_ = true;
+
 			PlayText = MediaService.IsPlaying ? FA.Pause : FA.Play;
+			Messagecenter.Send(new IsPlayingMessage(MediaService.IsPlaying));
 		}
 
 		void FillData(in YoutubeMediaFile media)

@@ -9,6 +9,22 @@
 	xmlns:vm="clr-namespace:UnoMusicApp.ViewModels"
 	Background="White"
 	mc:Ignorable="d">
+
+	<Page.Resources>
+		<!--  Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"  -->
+
+		<Storyboard x:Name="rotateImg">
+			<DoubleAnimation
+				RepeatBehavior="Forever"
+				Storyboard.TargetName="cicleImg"
+				Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+				From="0"
+				To="360"
+				Duration="0:0:5" />
+		</Storyboard>
+	</Page.Resources>
+
+
 	<Grid RowSpacing="0">
 		<Grid.Resources>
 			<ResourceDictionary>
@@ -42,13 +58,19 @@
 				Margin="20"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
-				Source="{Binding AlbumArt}" />
+				RenderTransformOrigin=".5,.5"
+				Source="{x:Bind Vm.AlbumArt, Mode=OneWay}">
+				<c:CircleImage.RenderTransform>
+					<RotateTransform x:Name="rotateTransform" />
+				</c:CircleImage.RenderTransform>
+			</c:CircleImage>
 
 			<c:CircleProgress
 				Margin="0"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
 				LineBackgroundColor="Black"
+				Progress="{x:Bind Vm.Progress, Mode=OneWay}"
 				ProgressColor="Red"
 				StrokeWidth="2" />
 
@@ -59,8 +81,8 @@
 				HorizontalAlignment="Center"
 				VerticalAlignment="Center"
 				Background="#DE5154"
-				Command="{Binding PlayPauseCommand}"
-				Content="{Binding PlayText}"
+				Command="{x:Bind Vm.PlayPauseCommand, Mode=OneWay}"
+				Content="{x:Bind Vm.PlayText, Mode=OneWay}"
 				CornerRadius="30" />
 
 			<Grid
@@ -77,7 +99,7 @@
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition Width="5" />
 				</Grid.ColumnDefinitions>
-				<TextBlock FontSize="16" Text="{Binding CurrentTime}" />
+				<TextBlock FontSize="16" Text="{x:Bind Vm.CurrentTime, Mode=OneWay}" />
 				<Button
 					Grid.Column="2"
 					Background="Transparent"
@@ -92,7 +114,7 @@
 				<TextBlock
 					Grid.Column="5"
 					FontSize="16"
-					Text="{Binding Total}" />
+					Text="{x:Bind Vm.Total, Mode=OneWay}" />
 			</Grid>
 		</Grid>
 		<StackPanel

@@ -28,21 +28,18 @@ namespace UnoMusicApp.ViewModels
 				return;
 
 			IsBusy = true;
+			var list = new List<YoutubeMediaFile>();
 			try
 			{
-				if (string.IsNullOrWhiteSpace(query))
+				await Task.Run(async () =>
 				{
-					var messageDialog = new MessageDialog("Você deve digitar um termo antes de pesquisar.");
-					messageDialog.Commands.Add(new UICommand("Ok"));
-					await messageDialog.ShowAsync().AsTask();
-					return;
-				}
+					if (string.IsNullOrWhiteSpace(query))
+						return;
 
-				var list = new List<YoutubeMediaFile>();
-				await foreach (var item in YoutubeService.SearchMedia(query).ConfigureAwait(false))
-				{
-					list.Add(item);
-				}
+					await foreach (var item in YoutubeService.SearchMedia(query))
+						list.Add(item);
+				});
+
 				Medias.Clear();
 				Medias.AddRange(list);
 			}

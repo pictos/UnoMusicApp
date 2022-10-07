@@ -1,5 +1,11 @@
 ﻿using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using System;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+using System.Threading;
+using UnoMusicApp.Messages;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -16,7 +22,15 @@ namespace UnoMusicApp.Pages
 		{
 			this.InitializeComponent();
 			DataContext = PlayerViewModel.Current;
-			
+			WeakReferenceMessenger.Default.Register<IsPlayingMessage>(this, OnIsPlayingChanged);
+		}
+
+		void OnIsPlayingChanged(object recipient, IsPlayingMessage message)
+		{
+			if (message.Value)
+				rotateImg.Begin();
+			else
+				rotateImg.Stop();
 		}
 	}
 }

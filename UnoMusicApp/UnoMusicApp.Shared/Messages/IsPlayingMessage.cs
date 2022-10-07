@@ -2,9 +2,9 @@
 
 namespace UnoMusicApp.Messages;
 
-public class IsPlayingMessage : ValueChangedMessage<string>
+public class IsPlayingMessage : ValueChangedMessage<bool>
 {
-	public IsPlayingMessage(string value) : base(value)
+	public IsPlayingMessage(bool value) : base(value)
 	{
 		
 	}
