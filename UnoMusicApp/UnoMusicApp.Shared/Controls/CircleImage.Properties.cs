@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using Windows.UI;
 
 namespace UnoMusicApp.Controls
@@ -27,11 +28,11 @@ namespace UnoMusicApp.Controls
 		}
 
 		public static readonly new DependencyProperty BackgroundProperty =
-	DependencyProperty.Register(nameof(Background), typeof(Color), typeof(CircleImage), new(null, changedCallback));
+	DependencyProperty.Register(nameof(Background), typeof(SolidColorBrush), typeof(CircleImage), new(null, changedCallback));
 
-		public new Color Background
+		public new SolidColorBrush Background
 		{
-			get => (Color)GetValue(BackgroundProperty);
+			get => (SolidColorBrush)GetValue(BackgroundProperty);
 			set => SetValue(BackgroundProperty, value);
 		}
 	}

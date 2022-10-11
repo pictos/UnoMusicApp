@@ -22,7 +22,6 @@
 		</Storyboard>
 	</Page.Resources>
 
-
 	<Grid RowSpacing="0">
 		<Grid.Resources>
 			<ResourceDictionary>
@@ -55,7 +54,7 @@
 			<c:CircleImage
 				x:Name="cicleImg"
 				Margin="20"
-				Background="#202020"
+				Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 				RenderTransformOrigin=".5,.5"
 				Source="{x:Bind Vm.AlbumArt, Mode=OneWay}">
 				<c:CircleImage.RenderTransform>
@@ -82,8 +81,9 @@
 
 			<Grid
 				Grid.Row="1"
-				Margin="50,0"
-				ColumnSpacing="10">
+				Margin="0,0"
+				HorizontalAlignment="Center"
+				ColumnSpacing="20">
 
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
@@ -94,7 +94,10 @@
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition Width="5" />
 				</Grid.ColumnDefinitions>
-				<TextBlock FontSize="16" Text="{x:Bind Vm.CurrentTime, Mode=OneWay}" />
+				<TextBlock
+					VerticalAlignment="Center"
+					FontSize="16"
+					Text="{x:Bind Vm.CurrentTime, Mode=OneWay}" />
 				<Button
 					Grid.Column="2"
 					Background="Transparent"
@@ -103,11 +106,11 @@
 				<Button
 					Grid.Column="3"
 					Height="30"
-					Background="Transparent"
 					Content="{x:Bind local:FA.Repeat}"
 					FontSize="16" />
 				<TextBlock
 					Grid.Column="5"
+					VerticalAlignment="Center"
 					FontSize="16"
 					Text="{x:Bind Vm.Total, Mode=OneWay}" />
 			</Grid>

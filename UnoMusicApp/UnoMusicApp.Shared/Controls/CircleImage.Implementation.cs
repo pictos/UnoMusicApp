@@ -41,7 +41,7 @@ public partial class CircleImage : SKXamlCanvas
 
 		circleFill.Shader = SKShader.CreateRadialGradient(new SKPoint(halfBaseSize, halfBaseSize),
 			halfBaseSize,
-			new SKColor[] { SKColors.Transparent, Background.ToSKColor()},
+			new SKColor[] { SKColors.Transparent, Background.Color.ToSKColor()},
 			new float[] { 0.8f, 1 },
 			SKShaderTileMode.Clamp);
 		var rect = SKRect.Create(baseSize, baseSize);
