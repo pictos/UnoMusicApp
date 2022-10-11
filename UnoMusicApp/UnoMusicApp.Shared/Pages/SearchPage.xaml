@@ -5,10 +5,11 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="using:UnoMusicApp.Pages"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:model="using:UnoMusicApp"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 	mc:Ignorable="d">
 
-	<Grid Padding="5" RowSpacing="0">
+	<Grid Padding="0" RowSpacing="0">
 
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto" />
@@ -16,37 +17,44 @@
 			<RowDefinition Height="auto" />
 		</Grid.RowDefinitions>
 		<TextBox
+			Margin="5"
 			KeyUp="TextBox_KeyUp"
 			PlaceholderText="Search for a music"
 			Text="{Binding Query, Mode=TwoWay}" />
 
 		<ListView
+			x:Name="list"
 			Grid.Row="1"
 			IsItemClickEnabled="True"
 			ItemClick="ItemClicked"
-			ItemsSource="{Binding Medias}">
+			ItemsSource="{x:Bind Vm.Medias}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<Border
 						Margin="0,5"
-						Padding="12"
-						Background="#3671e7">
-						<Grid ColumnSpacing="10">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
+						Holding="OnCellHolding"
+						IsHoldingEnabled="True">
+						<Grid Padding="0">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*" />
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
 
 							<Image
-								MaxWidth="150"
-								MaxHeight="150"
-								Source="{Binding ArtUrl}" />
-							<TextBlock
-								Grid.Column="1"
-								VerticalAlignment="Center"
-								Foreground="White"
-								Text="{Binding Title}"
-								TextWrapping="WrapWholeWords" />
+								Grid.RowSpan="2"
+								Source="{Binding ArtUrl}"
+								Stretch="Uniform" />
+							<StackPanel
+								Grid.Row="1"
+								Padding="5"
+								Background="#cc000000">
+								<TextBlock
+									VerticalAlignment="Center"
+									Foreground="White"
+									Text="{Binding Title}"
+									TextWrapping="WrapWholeWords" />
+								<TextBlock Foreground="White" Text="{Binding Duration}" />
+							</StackPanel>
 						</Grid>
 					</Border>
 				</DataTemplate>

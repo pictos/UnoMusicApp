@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using UnoMusicApp.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -10,31 +11,51 @@ namespace UnoMusicApp.Pages
 	/// </summary>
 	public sealed partial class SearchPage : Page
 	{
-		SearchViewModel vm;
+		SearchViewModel Vm => (SearchViewModel)DataContext;
 		public SearchPage()
 		{
 			this.InitializeComponent();
-			DataContext = vm = new SearchViewModel();
+			DataContext = new SearchViewModel();
 		}
 
-		void ItemClicked(object sender, ItemClickEventArgs e)
+		async void ItemClicked(object sender, ItemClickEventArgs e)
 		{
+			if (wasLongPress)
+			{
+				//HACK: workaround to make sure the item will not be selected
+				await Task.Delay(1);
+				list.SelectedItem = null;
+				wasLongPress = false;
+				return;
+			}
+
 			var item = (YoutubeMediaFile)e.ClickedItem;
-			vm.PlaySongCommand.Execute(item);
+			Vm.PlaySongCommand.Execute(item);
 		}
 
-		private void TextBox_KeyUp(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e)
+		bool wasLongPress;
+
+		void OnCellHolding(object sender, HoldingRoutedEventArgs e)
+		{
+			if (e.HoldingState != Microsoft.UI.Input.HoldingState.Started)
+				return;
+
+			Console.WriteLine("Started");
+			wasLongPress = true;
+		}
+
+		void TextBox_KeyUp(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e)
 		{
 			if (e.Key != Windows.System.VirtualKey.Enter)
 				return;
 
 			e.Handled = true;
 			var textBlock = (TextBox)sender;
-			LoseFocus(textBlock);
-			vm.SearchForQueryCommand.Execute(textBlock.Text);
+			RemoveFocus(textBlock);
+			Vm.SearchForQueryCommand.Execute(textBlock.Text);
 		}
 
-		void LoseFocus(object sender)
+		void RemoveFocus(object sender)
 		{
 			var control = (Control)sender;
 			var isTabStop = control.IsTabStop;

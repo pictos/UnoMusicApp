@@ -7,12 +7,10 @@
 	xmlns:local="using:UnoMusicApp"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:vm="clr-namespace:UnoMusicApp.ViewModels"
-	Background="White"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 	mc:Ignorable="d">
 
 	<Page.Resources>
-		<!--  Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"  -->
-
 		<Storyboard x:Name="rotateImg">
 			<DoubleAnimation
 				RepeatBehavior="Forever"
@@ -45,6 +43,7 @@
 		</Grid.RowDefinitions>
 
 		<Grid
+			x:Name="gridImg"
 			Grid.Row="1"
 			Padding="0"
 			RowSpacing="0">
@@ -56,8 +55,7 @@
 			<c:CircleImage
 				x:Name="cicleImg"
 				Margin="20"
-				HorizontalAlignment="Stretch"
-				VerticalAlignment="Stretch"
+				Background="#202020"
 				RenderTransformOrigin=".5,.5"
 				Source="{x:Bind Vm.AlbumArt, Mode=OneWay}">
 				<c:CircleImage.RenderTransform>
@@ -65,14 +63,11 @@
 				</c:CircleImage.RenderTransform>
 			</c:CircleImage>
 
-			<c:CircleProgress
+			<!--<c:CircleProgress
 				Margin="0"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
-				LineBackgroundColor="Black"
-				Progress="{x:Bind Vm.Progress, Mode=OneWay}"
-				ProgressColor="Red"
-				StrokeWidth="2" />
+				StrokeWidth="2" />-->
 
 			<Button
 				x:Name="btn"

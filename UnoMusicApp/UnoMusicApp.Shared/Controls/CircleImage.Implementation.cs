@@ -1,4 +1,4 @@
-﻿#if __ANDROID__ || __IOS__ || __MACCATALYST__
+﻿using Microsoft.UI.Xaml.Media;
 using SkiaSharp;
 using SkiaSharp.Views.Windows;
 using System;
@@ -53,6 +53,9 @@ public partial class CircleImage : SKXamlCanvas
 
 	async Task GetImageAsync()
 	{
+		if (string.IsNullOrWhiteSpace(Source))
+			return;
+
 		using var stream = await httpClient.GetStreamAsync(Source);
 		using var memoryStream = new MemoryStream();
 
@@ -61,10 +64,3 @@ public partial class CircleImage : SKXamlCanvas
 		bitmap = SKBitmap.Decode(memoryStream);
 	}
 }
-#else
-namespace UnoMusicApp.Controls;
-
-public partial class CircleImage : Microsoft.UI.Xaml.Controls.UserControl
-{ 
-}
-#endif

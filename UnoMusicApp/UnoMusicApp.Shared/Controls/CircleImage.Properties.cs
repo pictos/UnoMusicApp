@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using Windows.UI;
 
 namespace UnoMusicApp.Controls
 {
@@ -18,13 +19,22 @@ namespace UnoMusicApp.Controls
 		{
 			var circleImage = bindable as CircleImage;
 
-#if __ANDROID__ || __IOS__ || __MACCATALYST__
+//#if __ANDROID__ || __IOS__ || __MACCATALYST__
 			if (circleImage is null || e.NewValue is null)
 				return;
 
 			await circleImage.GetImageAsync();
 			circleImage?.Invalidate();
-#endif
+//#endif
+		}
+
+		public static readonly new DependencyProperty BackgroundProperty =
+	DependencyProperty.Register(nameof(Background), typeof(Color), typeof(CircleImage), new(null, changedCallback));
+
+		public new Color Background
+		{
+			get => (Color)GetValue(BackgroundProperty);
+			set => SetValue(BackgroundProperty, value);
 		}
 	}
 }

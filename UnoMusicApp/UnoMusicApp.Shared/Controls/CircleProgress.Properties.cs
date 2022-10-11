@@ -1,13 +1,14 @@
 ﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media;
 using Windows.UI;
 
 namespace UnoMusicApp.Controls
 {
 	public partial class CircleProgress
-    {
+	{
 		static readonly PropertyChangedCallback changedCallback = new(OnPropertyChanged);
-		static readonly SolidColorBrush defultColor = new(Color.FromArgb(0, 0, 0, 0));
+		static readonly Color defaultColor = Color.FromArgb(0, 0, 0, 0);
+		//static readonly SolidColorBrush defultColor = new(Color.FromArgb(0, 0, 0, 0));
+
 
 		public static readonly DependencyProperty StrokeWidthProperty =
 			DependencyProperty.Register(nameof(StrokeWidth), typeof(float), typeof(CircleProgress),
@@ -16,17 +17,17 @@ namespace UnoMusicApp.Controls
 				DependencyProperty.Register(nameof(Progress), typeof(float), typeof(CircleProgress), new(0f, changedCallback));
 
 		public static readonly DependencyProperty LineBackgroundColorProperty =
-			DependencyProperty.Register(nameof(LineBackgroundColor), typeof(Brush), typeof(CircleProgress), new(defultColor, changedCallback));
+			DependencyProperty.Register(nameof(LineBackgroundColor), typeof(Color), typeof(CircleProgress), new(defaultColor, changedCallback));
 
 		public static readonly DependencyProperty ProgressColorProperty =
-			DependencyProperty.Register(nameof(ProgressColor), typeof(Color), typeof(CircleProgress), new(defultColor, changedCallback));
+			DependencyProperty.Register(nameof(ProgressColor), typeof(Color), typeof(CircleProgress), new(defaultColor, changedCallback));
 
 		public float Progress
 		{
 			get => (float)GetValue(ProgressProperty);
 			set => SetValue(ProgressProperty, value);
 		}
-
+		
 		public Color LineBackgroundColor
 		{
 			get => (Color)GetValue(LineBackgroundColorProperty);
@@ -48,10 +49,7 @@ namespace UnoMusicApp.Controls
 		static void OnPropertyChanged(DependencyObject bindable, DependencyPropertyChangedEventArgs e)
 		{
 			var circleProgress = bindable as CircleProgress;
-#if __ANDROID__ || __IOS__ || __MACCATALYST__
 			circleProgress?.Invalidate();
-#endif
 		}
-
 	}
 }

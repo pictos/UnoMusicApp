@@ -1,11 +1,5 @@
-﻿#if ANDROID || IOS || MACCATALYST
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media;
-using SkiaSharp;
+﻿using SkiaSharp;
 using SkiaSharp.Views.Windows;
-using System;
-using Windows.ApplicationModel.Background;
-using Windows.UI;
 
 namespace UnoMusicApp.Controls;
 
@@ -16,7 +10,6 @@ public partial class CircleProgress : SKXamlCanvas
 	const float SweepAngle = 270;
 	const float baseSize = 100f;
 
-
 	protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
 	{
 		var info = e.Info;
@@ -26,10 +19,10 @@ public partial class CircleProgress : SKXamlCanvas
 		var min = Math.Min(info.Height, info.Width);
 		var scale = min / baseSize;
 		canvas.Scale(scale);
-		canvas.Clear();
+		canvas.Clear(SKColors.Transparent);
 		canvas.Save();
 
-		var newH = info.Height / scale;
+		//var newH = info.Height / scale;
 		var newW = info.Width / scale;
 
 		canvas.Translate((newW - baseSize) / 2, 0);
@@ -85,10 +78,3 @@ public partial class CircleProgress : SKXamlCanvas
 		canvas.DrawPath(path, paint);
 	}
 }
-#else
-namespace UnoMusicApp.Controls;
-
-public partial class CircleProgress : Microsoft.UI.Xaml.Controls.UserControl
-{ 
-}
-#endif
