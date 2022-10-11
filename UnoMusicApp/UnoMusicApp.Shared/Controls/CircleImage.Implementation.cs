@@ -41,7 +41,7 @@ public partial class CircleImage : SKXamlCanvas
 
 		circleFill.Shader = SKShader.CreateRadialGradient(new SKPoint(halfBaseSize, halfBaseSize),
 			halfBaseSize,
-			new SKColor[] { SKColors.Transparent, SKColors.White },
+			new SKColor[] { SKColors.Transparent, Background.ToSKColor()},
 			new float[] { 0.8f, 1 },
 			SKShaderTileMode.Clamp);
 		var rect = SKRect.Create(baseSize, baseSize);
@@ -56,10 +56,10 @@ public partial class CircleImage : SKXamlCanvas
 		if (string.IsNullOrWhiteSpace(Source))
 			return;
 
-		using var stream = await httpClient.GetStreamAsync(Source);
+		using var stream = await httpClient.GetStreamAsync(Source).ConfigureAwait(false);
 		using var memoryStream = new MemoryStream();
 
-		await stream.CopyToAsync(memoryStream).ConfigureAwait(false);
+		await stream.CopyToAsync(memoryStream);
 		memoryStream.Seek(0, SeekOrigin.Begin);
 		bitmap = SKBitmap.Decode(memoryStream);
 	}

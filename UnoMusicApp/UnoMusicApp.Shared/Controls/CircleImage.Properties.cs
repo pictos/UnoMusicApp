@@ -19,13 +19,11 @@ namespace UnoMusicApp.Controls
 		{
 			var circleImage = bindable as CircleImage;
 
-//#if __ANDROID__ || __IOS__ || __MACCATALYST__
 			if (circleImage is null || e.NewValue is null)
 				return;
 
 			await circleImage.GetImageAsync();
 			circleImage?.Invalidate();
-//#endif
 		}
 
 		public static readonly new DependencyProperty BackgroundProperty =
