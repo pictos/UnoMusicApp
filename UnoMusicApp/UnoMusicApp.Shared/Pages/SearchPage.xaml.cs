@@ -1,5 +1,8 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
+using UnoMusicApp.Controls;
 using UnoMusicApp.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -20,12 +23,12 @@ namespace UnoMusicApp.Pages
 
 		async void ItemClicked(object sender, ItemClickEventArgs e)
 		{
-			if (wasLongPress)
+			if (MusicCard.wasLongPress)
 			{
 				//HACK: workaround to make sure the item will not be selected
 				await Task.Delay(1);
 				list.SelectedItem = null;
-				wasLongPress = false;
+				MusicCard.wasLongPress = false;
 				return;
 			}
 
@@ -33,26 +36,19 @@ namespace UnoMusicApp.Pages
 			Vm.PlaySongCommand.Execute(item);
 		}
 
-		bool wasLongPress;
-
-		void OnCellHolding(object sender, HoldingRoutedEventArgs e)
-		{
-			if (e.HoldingState != Microsoft.UI.Input.HoldingState.Started)
-				return;
-
-			Console.WriteLine("Started");
-			wasLongPress = true;
-		}
-
 		void TextBox_KeyUp(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e)
 		{
 			if (e.Key != Windows.System.VirtualKey.Enter)
 				return;
-
 			e.Handled = true;
 			var textBlock = (TextBox)sender;
 			RemoveFocus(textBlock);
 			Vm.SearchForQueryCommand.Execute(textBlock.Text);
+		}
+
+		private void OnItemTaaped(object sender, TappedRoutedEventArgs e)
+		{
+			//e.
 		}
 
 		void RemoveFocus(object sender)

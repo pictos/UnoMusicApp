@@ -1,0 +1,46 @@
+﻿<UserControl
+	x:Class="UnoMusicApp.Controls.MusicCard"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:UnoMusicApp.Controls"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DesignHeight="300"
+	d:DesignWidth="400"
+	mc:Ignorable="d">
+
+	<Border
+		Margin="0,5"
+		Holding="OnCellHolding"
+		IsHoldingEnabled="True">
+		<Border.ContextFlyout>
+			<MenuFlyout>
+				<MenuFlyoutItem Click="OnPlayLast" Text="PlayLast" />
+				<MenuFlyoutItem Click="OnPlayNext" Text="PlayNext" />
+			</MenuFlyout>
+		</Border.ContextFlyout>
+
+		<Grid Padding="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+
+			<Image
+				Grid.RowSpan="2"
+				Source="{Binding ArtUrl}"
+				Stretch="Uniform" />
+			<StackPanel
+				Grid.Row="1"
+				Padding="5"
+				Background="#cc000000">
+				<TextBlock
+					VerticalAlignment="Center"
+					Foreground="White"
+					Text="{Binding Title}"
+					TextWrapping="WrapWholeWords" />
+				<TextBlock Foreground="White" Text="{Binding Duration}" />
+			</StackPanel>
+		</Grid>
+	</Border>
+</UserControl>

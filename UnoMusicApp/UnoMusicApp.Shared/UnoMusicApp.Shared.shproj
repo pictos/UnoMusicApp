@@ -13,22 +13,26 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.CSharp.targets" />
   <ItemGroup>
     <UpToDateCheckInput Remove="Controls\HeaderControl.xaml" />
+    <UpToDateCheckInput Remove="Controls\MusicCard.xaml" />
     <UpToDateCheckInput Remove="Pages\ShellPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <_Globbed_Compile Remove="Controls\CircleImage.Properties.cs" />
     <_Globbed_Compile Remove="Controls\CircleProgress.Properties.cs" />
     <_Globbed_Compile Remove="Controls\HeaderControl.xaml.cs" />
+    <_Globbed_Compile Remove="Controls\MusicCard.xaml.cs" />
     <_Globbed_Compile Remove="Helpers\MediaHelper.cs" />
     <_Globbed_Compile Remove="Helpers\ObservableRangeCollection.cs" />
     <_Globbed_Compile Remove="Helpers\ThreadHelpers.cs" />
     <_Globbed_Compile Remove="Helpers\Timer.cs" />
     <_Globbed_Compile Remove="Messages\IsPlayingMessage.cs" />
     <_Globbed_Compile Remove="Pages\ShellPage.xaml.cs" />
+    <_Globbed_Compile Remove="Services\PlaylistService.cs" />
     <_Globbed_Compile Remove="ViewModels\PlayerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <_Globbled_Page Remove="Controls\HeaderControl.xaml" />
+    <_Globbled_Page Remove="Controls\MusicCard.xaml" />
     <_Globbled_Page Remove="Pages\ShellPage.xaml" />
   </ItemGroup>
 </Project>

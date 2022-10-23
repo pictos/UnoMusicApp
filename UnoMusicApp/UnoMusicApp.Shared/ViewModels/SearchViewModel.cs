@@ -12,7 +12,7 @@ namespace UnoMusicApp.ViewModels
 	sealed partial class SearchViewModel : BaseViewModel
 	{
 		[ObservableProperty]
-		string query = "Cícero";
+		string query = "Pink Floyd pigs";
 
 		public ObservableRangeCollection<YoutubeMediaFile> Medias { get; } = new();
 
