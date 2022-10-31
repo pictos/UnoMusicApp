@@ -8,7 +8,6 @@ using UnoMusicApp.Helpers;
 using YoutubeExplode;
 using YoutubeExplode.Search;
 using YoutubeExplode.Videos.Streams;
-using static UnoMusicApp.Models;
 
 namespace UnoMusicApp.Services;
 

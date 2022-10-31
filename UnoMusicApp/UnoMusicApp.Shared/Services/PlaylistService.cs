@@ -9,6 +9,10 @@ static class PlaylistService
 	{
 		var playMedia = await GetMediaUrl(mediaFile);
 		var mediaFiles = MediaService.MediaFiles;
+
+		if (MediaService.CurrentMedia is null)
+			return;
+
 		var currentIndex = mediaFiles.IndexOf(MediaService.CurrentMedia) + 1;
 
 		mediaFiles.Insert(currentIndex, playMedia);

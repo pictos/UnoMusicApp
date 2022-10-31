@@ -13,7 +13,7 @@ sealed class MediaService
 
 	readonly LibVLC libVLC = new();
 	readonly MP mp;
-	public YoutubeMediaFile CurrentMedia { get; private set; }
+	public YoutubeMediaFile? CurrentMedia { get; private set; }
 	public List<YoutubeMediaFile> MediaFiles { get; } = new(5);
 
 	public string TotalDuration => TimeSpan.FromMilliseconds(mp.Media?.Duration ?? 0).ToStringTime();
@@ -61,7 +61,7 @@ sealed class MediaService
 
 	void AddToPlaylist()
 	{
-		if (MediaFiles.Any(x => x.Id == CurrentMedia.Id))
+		if (CurrentMedia is null || MediaFiles.Any(x => x.Id == CurrentMedia.Id))
 			return;
 
 		MediaFiles.Add(CurrentMedia);
@@ -104,6 +104,10 @@ sealed class MediaService
 			bool ShouldReturn()
 			{
 				var media = CurrentMedia;
+
+				if (media is null)
+					return true;
+
 				var index = MediaFiles.IndexOf(media);
 				return !IsRepeateMode && (++index == MediaFiles.Count);
 			}
@@ -118,6 +122,10 @@ sealed class MediaService
 				var duration = TimeSpan.FromMilliseconds(e.Length);
 				OnMediaInfo?.Invoke(duration);
 				mp.LengthChanged -= LengthChanged;
+
+				if (CurrentMedia is null)
+					return;
+
 				CurrentMedia = CurrentMedia with
 				{
 					Duration = duration

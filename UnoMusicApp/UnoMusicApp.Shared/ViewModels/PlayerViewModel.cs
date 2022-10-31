@@ -17,7 +17,7 @@ namespace UnoMusicApp.ViewModels
 
 		static readonly SolidColorBrush defaultColor = new(Colors.White);
 		const int OFFSET = 5_000;
-		YoutubeMediaFile mediaFile;
+		YoutubeMediaFile? mediaFile;
 
 		string videoUrl = string.Empty;
 
@@ -67,7 +67,7 @@ namespace UnoMusicApp.ViewModels
 		void OnMediaChanged()
 		{
 			Total = MediaService.TotalDuration;
-			AlbumArt = MediaService.CurrentMedia.ArtUrl;
+			AlbumArt = MediaService.CurrentMedia?.ArtUrl;
 		}
 
 		void OnProgressChanged(TimeSpan duration) =>
