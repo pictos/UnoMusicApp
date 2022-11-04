@@ -7,7 +7,7 @@ namespace UnoMusicApp.ViewModels
 	sealed partial class SearchViewModel : BaseViewModel
 	{
 		[ObservableProperty]
-		string query = "Pink Floyd pigs";
+		string query = "Pomplamoose Logical song";
 
 		public ObservableRangeCollection<YoutubeMediaFile> Medias { get; } = new();
 
@@ -23,14 +23,16 @@ namespace UnoMusicApp.ViewModels
 				return;
 
 			IsBusy = true;
-			var list = new List<YoutubeMediaFile>();
+
+
+			if (string.IsNullOrWhiteSpace(query))
+				return;
+
+			var list = new List<YoutubeMediaFile>(31);
 			try
 			{
 				await Task.Run(async () =>
 				{
-					if (string.IsNullOrWhiteSpace(query))
-						return;
-
 					await foreach (var item in YoutubeService.SearchMedia(query))
 						list.Add(item);
 				});

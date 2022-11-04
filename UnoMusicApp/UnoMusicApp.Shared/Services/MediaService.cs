@@ -36,7 +36,7 @@ sealed class MediaService
 
 	public bool IsRandomMode { get; set; }
 
-	public bool IsRepeateMode { get; set; }
+	public bool IsRepeateMode { get; set; } = true;
 
 	bool isInit;
 
@@ -152,7 +152,7 @@ sealed class MediaService
 
 	public void NextMusic()
 	{
-		if (CurrentMedia == default)
+		if (CurrentMedia is null)
 			return;
 
 		var media = CurrentMedia;
@@ -173,7 +173,7 @@ sealed class MediaService
 
 	public void PreviousMusic()
 	{
-		if (CurrentMedia == default)
+		if (CurrentMedia is null)
 			return;
 
 		var media = CurrentMedia;

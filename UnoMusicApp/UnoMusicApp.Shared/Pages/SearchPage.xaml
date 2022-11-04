@@ -28,7 +28,8 @@
 			Grid.Row="1"
 			IsItemClickEnabled="True"
 			ItemClick="ItemClicked"
-			ItemsSource="{x:Bind Vm.Medias}">
+			ItemsSource="{x:Bind Vm.Medias}"
+			SelectionMode="Single">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<controls:MusicCard MediaFile="{Binding}" />

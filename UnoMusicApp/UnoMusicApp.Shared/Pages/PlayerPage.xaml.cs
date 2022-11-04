@@ -14,9 +14,12 @@ namespace UnoMusicApp.Pages
 	/// </summary>
 	public sealed partial class PlayerPage : Page
 	{
+		static PlayerPage? current;
+		public static PlayerPage Current => current ??= new();
+
 		internal PlayerViewModel Vm => (PlayerViewModel)DataContext;
 
-		public PlayerPage()
+		PlayerPage()
 		{
 			this.InitializeComponent();
 			CreateCircleProgress();
@@ -42,6 +45,7 @@ namespace UnoMusicApp.Pages
 				StrokeWidth = 2,
 				ProgressColor = Colors.Red,
 				LineBackgroundColor = Colors.Black,
+				IsHitTestVisible = false
 			};
 
 			var progressBind = new Binding

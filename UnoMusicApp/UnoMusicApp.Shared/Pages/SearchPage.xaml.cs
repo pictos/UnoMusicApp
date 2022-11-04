@@ -14,8 +14,11 @@ namespace UnoMusicApp.Pages
 	/// </summary>
 	public sealed partial class SearchPage : Page
 	{
+		static SearchPage? current;
+		public static SearchPage Current => current ??= new();
+
 		SearchViewModel Vm => (SearchViewModel)DataContext;
-		public SearchPage()
+		SearchPage()
 		{
 			this.InitializeComponent();
 			DataContext = new SearchViewModel();
@@ -23,10 +26,11 @@ namespace UnoMusicApp.Pages
 
 		async void ItemClicked(object sender, ItemClickEventArgs e)
 		{
+			//HACK: workaround to make sure the SelectedItem will be valid
+			await Task.Delay(1);
+
 			if (MusicCard.wasLongPress)
 			{
-				//HACK: workaround to make sure the item will not be selected
-				await Task.Delay(1);
 				list.SelectedItem = null;
 				MusicCard.wasLongPress = false;
 				return;
@@ -34,6 +38,7 @@ namespace UnoMusicApp.Pages
 
 			var item = (YoutubeMediaFile)e.ClickedItem;
 			Vm.PlaySongCommand.Execute(item);
+			list.SelectedItem = null;
 		}
 
 		void TextBox_KeyUp(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e)
@@ -44,11 +49,6 @@ namespace UnoMusicApp.Pages
 			var textBlock = (TextBox)sender;
 			RemoveFocus(textBlock);
 			Vm.SearchForQueryCommand.Execute(textBlock.Text);
-		}
-
-		private void OnItemTaaped(object sender, TappedRoutedEventArgs e)
-		{
-			//e.
 		}
 
 		void RemoveFocus(object sender)

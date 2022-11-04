@@ -6,7 +6,11 @@
 	xmlns:local="using:UnoMusicApp.Pages"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
 
-	<NavigationView IsSettingsVisible="False">
+	<NavigationView
+		x:Name="navigationView"
+		IsSettingsVisible="False"
+		PaneDisplayMode="Top"
+		SelectionChanged="OnSelectionChanged">
 		<NavigationView.MenuItems>
 			<NavigationViewItem Content="Search" />
 			<NavigationViewItem Content="Player" />

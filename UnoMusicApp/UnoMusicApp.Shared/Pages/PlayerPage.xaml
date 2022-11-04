@@ -30,6 +30,7 @@
 					<Setter Property="MinWidth" Value="50" />
 					<Setter Property="Foreground" Value="Black" />
 					<Setter Property="Background" Value="Transparent" />
+					<Setter Property="BorderThickness" Value="0" />
 				</Style>
 			</ResourceDictionary>
 		</Grid.Resources>
@@ -61,11 +62,6 @@
 				</c:CircleImage.RenderTransform>
 			</c:CircleImage>
 
-			<!--<c:CircleProgress
-				Margin="0"
-				HorizontalAlignment="Stretch"
-				VerticalAlignment="Stretch"
-				StrokeWidth="2" />-->
 
 			<Button
 				x:Name="btn"
@@ -77,7 +73,6 @@
 				Command="{x:Bind Vm.PlayPauseCommand, Mode=OneWay}"
 				Content="{x:Bind Vm.PlayText, Mode=OneWay}"
 				CornerRadius="30" />
-
 			<Grid
 				Grid.Row="1"
 				Margin="0,0"

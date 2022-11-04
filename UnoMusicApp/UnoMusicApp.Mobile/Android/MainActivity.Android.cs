@@ -17,9 +17,10 @@ public class MainActivity : Microsoft.UI.Xaml.ApplicationActivity
 	{
 		Extensions.Platform.Init(Current ?? this);
 	}
-	public override void OnBackPressed()
-	{
-		NavigationService.NavigateBack();
-	}
+
+	//public override void OnBackPressed()
+	//{
+	//	NavigationService.NavigateBack();
+	//}
 }
 
