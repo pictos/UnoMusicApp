@@ -12,3 +12,7 @@ This app is a music player that reproduces youtube content.
 ![Player_win](https://user-images.githubusercontent.com/20712372/199860628-3ab50b0a-f0e7-4285-9364-93a6700a67d0.png)
 
 You can fide more screenshots [here](https://github.com/pictos/UnoMusicApp/tree/master/Prints)
+
+### References
+
+- Player UI: https://github.com/jsuarezruiz/PulseMusic
