@@ -66,5 +66,9 @@
 	  <Folder Include="Assets\Fonts\" />
 	</ItemGroup>
 	
+	<ItemGroup>
+	  <ProjectReference Include="..\..\UnoMusicApp.Extensions\UnoMusicApp.Extensions.csproj" />
+	</ItemGroup>
+	
 	<Import Project="..\UnoMusicApp.Shared\UnoMusicApp.Shared.projitems" Label="Shared" />
 </Project>

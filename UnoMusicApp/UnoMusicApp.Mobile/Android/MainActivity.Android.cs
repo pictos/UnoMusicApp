@@ -13,6 +13,10 @@ namespace UnoMusicApp;
 	)]
 public class MainActivity : Microsoft.UI.Xaml.ApplicationActivity
 {
+	public MainActivity()
+	{
+		Extensions.Platform.Init(Current ?? this);
+	}
 	public override void OnBackPressed()
 	{
 		NavigationService.NavigateBack();
