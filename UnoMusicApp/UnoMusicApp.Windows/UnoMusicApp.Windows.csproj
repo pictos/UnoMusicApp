@@ -29,14 +29,14 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-		<PackageReference Include="LibVLCSharp" Version="3.6.6" />
-		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.16" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.5" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.1" />
+		<PackageReference Include="LibVLCSharp" Version="3.6.7" />
+		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.17.4" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221116.1" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
-		<PackageReference Include="YoutubeExplode" Version="6.2.2" />
-		<PackageReference Include="SkiaSharp.Views.WinUI" Version="2.88.0" />
+		<PackageReference Include="YoutubeExplode" Version="6.2.4" />
+		<PackageReference Include="SkiaSharp.Views.WinUI" Version="2.88.3" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
@@ -57,8 +57,8 @@
 		the "Microsoft.Windows.SDK.BuildTools" package above, and the "revision" version number
 		must be the highest found in https://www.nuget.org/packages/Microsoft.Windows.SDK.NET.Ref.
 		-->
-		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22000.25" />
-		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22000.25" />
+		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22621.28" />
+		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22621.28" />
 	</ItemGroup>
 	
 	<ItemGroup>
