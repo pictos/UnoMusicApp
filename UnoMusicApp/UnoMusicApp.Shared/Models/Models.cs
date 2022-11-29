@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 
 namespace UnoMusicApp;
 
@@ -10,7 +8,7 @@ public sealed record YoutubeMediaFile(string Title, string Url, TimeSpan? Durati
 	public bool Equals(YoutubeMediaFile? other) =>
 		(Title, Url, ArtUrl, Id) == (other?.Title, other?.Url, other?.ArtUrl, other?.Id);
 
-	public override int GetHashCode() => this.GetHashCode();
+	public override int GetHashCode() => base.GetHashCode();
 }
 
 public readonly record struct YoutubePlaylist(string Title, string Url, string Id);
