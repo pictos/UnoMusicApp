@@ -27,6 +27,7 @@
     <_Globbed_Compile Remove="Helpers\Timer.cs" />
     <_Globbed_Compile Remove="Messages\IsPlayingMessage.cs" />
     <_Globbed_Compile Remove="Pages\ShellPage.xaml.cs" />
+    <_Globbed_Compile Remove="Services\DependencyService.cs" />
     <_Globbed_Compile Remove="Services\PlaylistService.cs" />
     <_Globbed_Compile Remove="ViewModels\PlayerViewModel.cs" />
   </ItemGroup>

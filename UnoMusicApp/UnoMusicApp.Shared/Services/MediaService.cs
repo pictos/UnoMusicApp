@@ -57,6 +57,10 @@ sealed class MediaService
 		mp.Play();
 		AddToPlaylist();
 		Init();
+
+#if ANDROID
+		DependencyService.Get<INotification>().ShowNotification();
+#endif
 	}
 
 	void AddToPlaylist()

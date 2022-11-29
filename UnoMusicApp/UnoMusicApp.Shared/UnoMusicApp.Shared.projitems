@@ -49,8 +49,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DependencyService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Notification.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\PlaylistService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\YoutubeService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
