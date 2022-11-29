@@ -164,10 +164,15 @@ sealed class MediaService
 		var index = MediaFiles.IndexOf(media);
 		index = index is -1 ? 0 : index;
 
+		if (index == totalMedia - 1)
+			return;
+
 		if (!IsRepeateMode)
 			index = IsRandomMode
 				? Random.Shared.Next(0, totalMedia - 1)
 				: ++index;
+		else
+			++index;
 
 		if (index > totalMedia)
 			index = totalMedia;
@@ -182,7 +187,13 @@ sealed class MediaService
 
 		var media = CurrentMedia;
 		var index = MediaFiles.IndexOf(media);
+
+		var totalMedia = MediaFiles.Count;
+		if (index == totalMedia - 1)
+			return;
+
 		index--;
+
 		SetCurrentMusic(ref index);
 	}
 
