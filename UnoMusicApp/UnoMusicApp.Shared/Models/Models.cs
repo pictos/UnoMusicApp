@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 
 namespace UnoMusicApp;
 
-public record YoutubeMediaFile(string Title, string Url, TimeSpan? Duration, string ArtUrl, string Id)
+[DebuggerDisplay("{Title}")]
+public sealed record YoutubeMediaFile(string Title, string Url, TimeSpan? Duration, string ArtUrl, string Id) : IEquatable<YoutubeMediaFile>
 {
-	public virtual bool Equals(YoutubeMediaFile other) =>
-		(Title, Url, ArtUrl, Id) == (other.Title, other.Url, other.ArtUrl, other.Id);
+	public bool Equals(YoutubeMediaFile? other) =>
+		(Title, Url, ArtUrl, Id) == (other?.Title, other?.Url, other?.ArtUrl, other?.Id);
+
+	public override int GetHashCode() => this.GetHashCode();
 }
 
 public readonly record struct YoutubePlaylist(string Title, string Url, string Id);
